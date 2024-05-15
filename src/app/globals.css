@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.dark .wmde-markdown pre code {
+  filter: hue-rotate(180deg) saturate(200%) invert();
+  text-shadow: none !important;
+}
+.dark .wmde-markdown pre {
+  background-color: #21273400 !important;
+}
