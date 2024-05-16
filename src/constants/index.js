@@ -38,6 +38,7 @@ export const themes = [
 export const navLinks = [
   { slug: "/", label: "Home", icon: <RiHomeFill /> },
   { slug: "/blogs", label: "Blogs", icon: <PiNewspaperClippingFill /> },
+  { slug: "/knowledges", label: "Knowledge", icon: <MdLibraryBooks /> },
   {
     slug: "/ask-question",
     label: "Ask Question",
