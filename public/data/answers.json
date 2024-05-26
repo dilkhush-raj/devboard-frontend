@@ -1,0 +1,62 @@
+[
+  {
+    "id": 23132,
+    "author": "John Doe",
+    "author_username": "@john-doe",
+    "author_profile_img": "",
+    "date": "Sep 12, 2022 at 08:45",
+    "upvote": 8,
+    "downvote": 1,
+    "answer": "This is how to declare a variable in JS\n```javascript\nlet a = 5;\n```"
+  },
+  {
+    "id": 23133,
+    "author": "Jane Smith",
+    "author_username": "@jane-smith",
+    "author_profile_img": "",
+    "date": "Oct 5, 2022 at 15:20",
+    "upvote": 15,
+    "downvote": 2,
+    "answer": "**Python Code:**\n```python\nfor i in range(5):\n    print('Hello, world!')\n```"
+  },
+  {
+    "id": 23134,
+    "author": "Mike Johnson",
+    "author_username": "@mike-johnson",
+    "author_profile_img": "",
+    "date": "Nov 18, 2022 at 11:30",
+    "upvote": 6,
+    "downvote": 0,
+    "answer": "Here's a Java snippet:\n```java\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println('Hello, world!');\n    }\n}\n```"
+  },
+  {
+    "id": 23135,
+    "author": "Emily Brown",
+    "author_username": "@emily-brown",
+    "author_profile_img": "",
+    "date": "Dec 3, 2022 at 17:55",
+    "upvote": 10,
+    "downvote": 5,
+    "answer": "## HTML Example:\n```html\n<!DOCTYPE html>\n<html>\n<head>\n    <title>Hello, world!</title>\n</head>\n<body>\n    <h1>Hello, world!</h1>\n</body>\n</html>\n```"
+  },
+  {
+    "id": 23136,
+    "author": "Alex Wilson",
+    "author_username": "@alex-wilson",
+    "author_profile_img": "",
+    "date": "Jan 8, 2023 at 09:10",
+    "upvote": 20,
+    "downvote": 1,
+    "answer": "**Bash Command:**\n```bash\n$ echo 'Hello, world!'\n```"
+  },
+  {
+    "id": 23137,
+    "author": "Sarah Thompson",
+    "author_username": "@sarah-thompson",
+    "author_profile_img": "",
+    "date": "Feb 14, 2023 at 14:25",
+    "upvote": 12,
+    "downvote": 2,
+    "answer": "Explaining Cloud Computing:\nCloud computing offers **scalability**, **flexibility**, and **cost-efficiency**, making it a game-changer for businesses of all sizes."
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 23132,
+    "author": "John Doe",
+    "author_username": "@john-doe",
+    "author_profile_img": "",
+    "date": "Sep 12, 2022 at 08:45",
+    "upvote": 8,
+    "downvote": 1,
+    "tweet": "JavaScript frameworks are evolving rapidly, making it essential for developers to stay updated with the latest trends and best practices. #webdevelopment #JavaScript"
+  },
+  {
+    "id": 23133,
+    "author": "Jane Smith",
+    "author_username": "@jane-smith",
+    "author_profile_img": "",
+    "date": "Oct 5, 2022 at 15:20",
+    "upvote": 15,
+    "downvote": 2,
+    "tweet": "Excited to explore the potential of artificial intelligence in healthcare. AI has the power to revolutionize patient care and medical research. #AI #healthtech"
+  },
+  {
+    "id": 23134,
+    "author": "Mike Johnson",
+    "author_username": "@mike-johnson",
+    "author_profile_img": "",
+    "date": "Nov 18, 2022 at 11:30",
+    "upvote": 6,
+    "downvote": 0,
+    "tweet": "Just attended a virtual reality workshop and I'm amazed by the immersive experience it offers. VR has incredible potential across various industries, from gaming to education. #VR #tech"
+  },
+  {
+    "id": 23135,
+    "author": "Emily Brown",
+    "author_username": "@emily-brown",
+    "author_profile_img": "",
+    "date": "Dec 3, 2022 at 17:55",
+    "upvote": 10,
+    "downvote": 5,
+    "tweet": "As a cybersecurity enthusiast, I believe continuous learning and adaptation are crucial in staying ahead of cyber threats. Let's make the internet a safer place for everyone. #cybersecurity #infosec"
+  },
+  {
+    "id": 23136,
+    "author": "Alex Wilson",
+    "author_username": "@alex-wilson",
+    "author_profile_img": "",
+    "date": "Jan 8, 2023 at 09:10",
+    "upvote": 20,
+    "downvote": 1,
+    "tweet": "Diving into the world of blockchain technology. The potential applications of blockchain extend far beyond cryptocurrencies, from supply chain management to digital identity verification. #blockchain #tech"
+  },
+  {
+    "id": 23137,
+    "author": "Sarah Thompson",
+    "author_username": "@sarah-thompson",
+    "author_profile_img": "",
+    "date": "Feb 14, 2023 at 14:25",
+    "upvote": 12,
+    "downvote": 2,
+    "tweet": "Cloud computing offers scalability, flexibility, and cost-efficiency, making it a game-changer for businesses of all sizes. Embracing cloud technologies can drive innovation and accelerate growth. #cloudcomputing #tech"
+  },
+  {
+    "id": 23138,
+    "author": "Chris Evans",
+    "author_username": "@chris-evans",
+    "author_profile_img": "",
+    "date": "Mar 21, 2023 at 10:50",
+    "upvote": 7,
+    "downvote": 0,
+    "tweet": "The Internet of Things (IoT) is transforming industries by enabling real-time data monitoring and analysis. Exciting times ahead as IoT continues to reshape our world. #IoT #technology"
+  },
+  {
+    "id": 23139,
+    "author": "Megan Davis",
+    "author_username": "@megan-davis",
+    "author_profile_img": "",
+    "date": "Apr 5, 2023 at 16:40",
+    "upvote": 9,
+    "downvote": 3,
+    "tweet": "Artificial intelligence and machine learning are revolutionizing the way businesses operate, from personalized customer experiences to predictive analytics. Embrace AI to unlock new opportunities and drive growth. #AI #ML"
+  },
+  {
+    "id": 23140,
+    "author": "David Garcia",
+    "author_username": "@david-garcia",
+    "author_profile_img": "",
+    "date": "May 9, 2023 at 12:15",
+    "upvote": 18,
+    "downvote": 4,
+    "tweet": "5G technology promises ultra-fast speeds and low latency, paving the way for futuristic applications like autonomous vehicles and augmented reality. The future is wireless! #5G #technology"
+  }
+]

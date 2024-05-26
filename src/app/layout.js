@@ -1,5 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,8 +14,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className + " dark:bg-darkColor-100 dark:text-lightColor-900 "}>
+    <html lang="en" data-color-mode="dark">
+      <body className={inter.className + " dark:bg-darkColor-100 select-none dark:text-lightColor-900 "}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
