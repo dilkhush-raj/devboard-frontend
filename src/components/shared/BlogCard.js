@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { PiArrowFatUpFill, PiArrowFatDownFill } from "react-icons/pi";
-import { FaCommentAlt } from "react-icons/fa";
+import {PiArrowFatUpFill, PiArrowFatDownFill} from "react-icons/pi";
+import {FaCommentAlt} from "react-icons/fa";
 import MDEditor from "@uiw/react-md-editor";
 import ShareButtons from "../ui/ShareButton";
 import CardMenu from "../ui/CardMenu";
@@ -42,12 +42,12 @@ export default function BlogCard({
   comment = [],
 }) {
   return (
-    <div className="relative p-4 rounded-lg shadow-sm bg-lightColor-800 dark:bg-darkColor-300">
+    <div className="relative rounded-lg bg-white p-4 shadow-sm dark:bg-darkColor-300">
       <div className="flex flex-col gap-4">
         <div>
           <div className="flex items-center justify-between">
             <Link
-              href={`/user/${author_username}`}
+              href={`/${author_username}`}
               className="flex items-center gap-2"
             >
               <Image
@@ -61,7 +61,7 @@ export default function BlogCard({
                 <div className="text-sm">{author}</div>
                 <div className="text-xs">{author_username}</div>
               </div>
-              <li className="pl-4 text-xs ">{published_at}</li>
+              <li className="pl-4 text-xs">{published_at}</li>
             </Link>
             <CardMenu />
           </div>
@@ -71,7 +71,7 @@ export default function BlogCard({
 
         <MDEditor.Markdown className="select-text" source={content} />
         <div className="flex items-center gap-4 text-sm">
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full cursor-pointer w-max bg-lightColor-700 dark:bg-darkColor-400">
+          <div className="flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
             <div className="flex items-center gap-2 hover:text-primary-500">
               <PiArrowFatUpFill />
               {like}
@@ -81,13 +81,13 @@ export default function BlogCard({
               {dislike}
             </div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full cursor-pointer hover:text-cyan-600 w-max bg-lightColor-700 dark:bg-darkColor-400">
+          <div className="flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 hover:text-cyan-600 dark:bg-darkColor-400">
             <div className="flex items-center gap-2">
               <FaCommentAlt />
               <div>{comment?.length}</div>
             </div>
           </div>
-          <div className="relative flex items-center gap-2 px-3 py-1 rounded-full cursor-pointer w-max bg-lightColor-700 dark:bg-darkColor-400">
+          <div className="relative flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
             <ShareButtons url={`/blogs/${slug}`} title={title} />
           </div>
         </div>

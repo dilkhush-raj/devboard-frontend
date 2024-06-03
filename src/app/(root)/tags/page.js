@@ -8,7 +8,7 @@ import Empty from "@/components/ui/Empty";
 export default function TagsPage() {
   const fetchTags = async () => {
     const res = await axios.get(
-      `${process.env.BACKEND_SERVER_BASE_URL}/api/v1/tags/list`
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/tags/list`
     );
     return res?.data;
   };

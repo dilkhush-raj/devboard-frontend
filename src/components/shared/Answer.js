@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { PiArrowFatUpFill, PiArrowFatDownFill } from "react-icons/pi";
-import { HiOutlineDotsVertical } from "react-icons/hi";
-import { FaCommentAlt } from "react-icons/fa";
-import { useState } from "react";
-import MDEditor from '@uiw/react-md-editor';
+import {PiArrowFatUpFill, PiArrowFatDownFill} from "react-icons/pi";
+import {HiOutlineDotsVertical} from "react-icons/hi";
+import {FaCommentAlt} from "react-icons/fa";
+import {useState} from "react";
+import MDEditor from "@uiw/react-md-editor";
 import ShareButtons from "../ui/ShareButton";
 
 /**
@@ -25,11 +25,11 @@ import ShareButtons from "../ui/ShareButton";
  * @returns {JSX.Element} Rendered Answer component.
  */
 
-export default function Answer({ data }) {
+export default function Answer({data}) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative p-4 rounded-lg shadow-sm bg-lightColor-800 dark:bg-darkColor-300">
+    <div className="relative rounded-lg bg-white p-4 shadow-sm dark:bg-darkColor-300">
       <div className="flex flex-col gap-4">
         <div>
           <div className="flex items-center justify-between">
@@ -56,7 +56,7 @@ export default function Answer({ data }) {
           <div
             className={`${
               open ? "visible" : "hidden"
-            } z-50 absolute top-2 right-8 shadow-md min-w-40 bg-lightColor-850 rounded-lg dark:bg-darkColor-400 p-4`}
+            } absolute right-8 top-2 z-50 min-w-40 rounded-lg bg-lightColor-850 p-4 shadow-md dark:bg-darkColor-400`}
           >
             <div>Save</div>
             <div>Report</div>
@@ -65,16 +65,19 @@ export default function Answer({ data }) {
             onClick={() => setOpen(!open)}
             className={`${
               open ? "visible" : "hidden"
-            } z-40 bg-[#00000064] fixed inset-0`}
+            } fixed inset-0 z-40 bg-[#00000064]`}
           >
             {/* Maskable Area */}
           </div>
         </div>
 
-        <MDEditor.Markdown className="select-text" source={data?.answer || data?.tweet} />
+        <MDEditor.Markdown
+          className="select-text"
+          source={data?.answer || data?.tweet}
+        />
         {/* <div>{data?.answer || data?.tweet}</div> */}
         <div className="flex items-center gap-4 text-sm">
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full cursor-pointer w-max bg-lightColor-700 dark:bg-darkColor-400">
+          <div className="flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
             <div className="flex items-center gap-2 hover:text-primary-500">
               <PiArrowFatUpFill />
               {data?.upvote || 0}
@@ -84,14 +87,18 @@ export default function Answer({ data }) {
               {data?.downvote || 0}
             </div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full cursor-pointer hover:text-cyan-600 w-max bg-lightColor-700 dark:bg-darkColor-400">
+          <div className="flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 hover:text-cyan-600 dark:bg-darkColor-400">
             <div className="flex items-center gap-2">
               <FaCommentAlt />
               <div>32</div>
             </div>
           </div>
-          <div className="relative flex items-center gap-2 px-3 py-1 rounded-full cursor-pointer w-max bg-lightColor-700 dark:bg-darkColor-400">
-            <ShareButtons title={"DevBoard"} url={"https://dev-board-ten.vercel.app/"} key={data?.id} />
+          <div className="relative flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
+            <ShareButtons
+              title={"DevBoard"}
+              url={"https://dev-board-ten.vercel.app/"}
+              key={data?.id}
+            />
           </div>
         </div>
       </div>
