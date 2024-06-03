@@ -1,15 +1,16 @@
 // @ts-check
 // Theme Icons
-import { HiSun, HiMoon } from "react-icons/hi";
-import { HiMiniComputerDesktop } from "react-icons/hi2";
+import {HiSun, HiMoon} from "react-icons/hi";
+import {HiMiniComputerDesktop} from "react-icons/hi2";
 // Navbar Icons
-import { RiHomeFill } from "react-icons/ri";
-import { PiNewspaperClippingFill } from "react-icons/pi";
-import { BsFillPatchQuestionFill } from "react-icons/bs";
-import { FaRankingStar } from "react-icons/fa6";
+import {RiHomeFill} from "react-icons/ri";
+import {PiNewspaperClippingFill} from "react-icons/pi";
+import {BsFillPatchQuestionFill} from "react-icons/bs";
+import {FaRankingStar} from "react-icons/fa6";
+import {IoMdPricetags} from "react-icons/io";
 
-import { IoMdSave } from "react-icons/io";
-import { MdReport } from "react-icons/md";
+import {IoMdSave} from "react-icons/io";
+import {MdReport} from "react-icons/md";
 
 /**
  * Available themes for the application.
@@ -21,9 +22,9 @@ import { MdReport } from "react-icons/md";
  * @property {JSX.Element} icon - The icon representing the theme.
  */
 export const themes = [
-  { value: "light", label: "Light", icon: <HiSun /> },
-  { value: "dark", label: "Dark", icon: <HiMoon /> },
-  { value: "system", label: "System", icon: <HiMiniComputerDesktop /> },
+  {value: "light", label: "Light", icon: <HiSun />},
+  {value: "dark", label: "Dark", icon: <HiMoon />},
+  {value: "system", label: "System", icon: <HiMiniComputerDesktop />},
 ];
 
 /**
@@ -36,14 +37,15 @@ export const themes = [
  * @property {JSX.Element} icon - The icon representing the navigation link.
  */
 export const navLinks = [
-  { slug: "/", label: "Home", icon: <RiHomeFill /> },
-  { slug: "/blogs", label: "Blogs", icon: <PiNewspaperClippingFill /> },
+  {slug: "/", label: "Home", icon: <RiHomeFill />},
+  {slug: "/blogs", label: "Blogs", icon: <PiNewspaperClippingFill />},
   {
     slug: "/ask-question",
     label: "Ask Question",
     icon: <BsFillPatchQuestionFill />,
   },
-  { slug: "/leaderboard", label: "Leaderboard", icon: <FaRankingStar /> },
+  {slug: "/tags", label: "Tags", icon: <IoMdPricetags />},
+  {slug: "/leaderboard", label: "Leaderboard", icon: <FaRankingStar />},
 ];
 
 /**
