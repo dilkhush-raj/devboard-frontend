@@ -1,7 +1,6 @@
 // @ts-check
 // Theme Icons
 import {HiSun, HiMoon} from "react-icons/hi";
-import {HiMiniComputerDesktop} from "react-icons/hi2";
 // Navbar Icons
 import {RiHomeFill} from "react-icons/ri";
 import {PiNewspaperClippingFill} from "react-icons/pi";
@@ -24,7 +23,6 @@ import {MdReport} from "react-icons/md";
 export const themes = [
   {value: "light", label: "Light", icon: <HiSun />},
   {value: "dark", label: "Dark", icon: <HiMoon />},
-  {value: "system", label: "System", icon: <HiMiniComputerDesktop />},
 ];
 
 /**

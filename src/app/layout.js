@@ -16,11 +16,11 @@ export const metadata = {
 export default function RootLayout({children}) {
   return (
     <ReactQueryClientProvider>
-      <html lang="en" data-color-mode="dark">
+      <html lang="en" suppressHydrationWarning>
         <body
           className={
             inter.className +
-            " dark:bg-darkColor-100 bg-[#f5f5f5] select-none dark:text-lightColor-900 "
+            " select-none bg-[#f5f5f5] dark:bg-darkColor-100 dark:text-lightColor-900"
           }
         >
           <ThemeProvider>{children}</ThemeProvider>
