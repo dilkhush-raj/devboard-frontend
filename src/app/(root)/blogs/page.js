@@ -1,55 +1,55 @@
-// @ts-check
 "use client";
-import BlogCard from "@/components/shared/BlogCard";
-import Empty from "@/components/ui/Empty";
-import {useQuery} from "@tanstack/react-query";
+import ConvertToReadableDateTimeUI from "@/components/function/convertDateTime";
+import {useInfiniteQuery} from "@tanstack/react-query";
 import axios from "axios";
+import {useInView} from "react-intersection-observer";
+import BlogCard from "@/components/shared/BlogCard";
+import Answer from "@/components/shared/Answer";
+import {useEffect} from "react";
+import {Spinner} from "@nextui-org/react";
 
-/**
- * Blog page showing a list of blog posts.
- * @typedef {Object} BlogPost
- * @property {number} id - The unique identifier of the blog post.
- * @property {string} title - The title of the blog post.
- * @property {string} author - The author of the blog post.
- * @property {string} date_published - The date the blog post was published.
- * @property {string} content - The content of the blog post.
- */
+const page = () => {
+  const {ref, inView} = useInView();
 
-/**
- * Fetches the blog posts from the API.
- * @returns {Promise<{data: BlogPost[]}>} The response containing blog posts.
- */
-const fetchBlogs = async () => {
-  const res = await axios.get(`https://dummyapi.online/api/blogposts`);
-  return res;
-};
+  const fetchFeed = async ({pageParam}) => {
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/feed/blog?page=${pageParam}&limit=5`;
+    const res = await axios.get(url);
+    return res?.data;
+  };
 
-/**
- * Use query hook to fetch blog posts from the API and cache it for an hour.
- * @typedef {Object} QueryResult
- * @property {boolean} isLoading - Indicates if the query is still loading.
- * @property {boolean} isError - Indicates if there was an error fetching the data.
- * @property {BlogPost[]} data - The fetched blog posts.
- * @property {Error} error - The error that occurred while fetching the data.
- */
-
-/**
- * Blog page component.
- * @returns {JSX.Element} The blog page component.
- */
-export default function Page() {
-  /**
-   * Fetches the blog posts from the API and caches it for an hour.
-   * @returns {QueryResult} The result of the query.
-   */
-  const {isLoading, isError, data, error} = useQuery({
-    queryKey: ["blogs"],
-    queryFn: fetchBlogs,
-    staleTime: 1000 * 60 * 60, // Cache for an hour
+  const {
+    data,
+    isError,
+    error,
+    isLoading,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+  } = useInfiniteQuery({
+    queryKey: ["feed"],
+    queryFn: fetchFeed,
+    initialPageParam: 1,
+    staleTime: 60 * 1000,
+    getNextPageParam: (lastPage) => {
+      if (lastPage.currentPage < lastPage.totalPages) {
+        return lastPage.currentPage + 1;
+      }
+      return undefined;
+    },
   });
 
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, fetchNextPage]);
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-[calc(100vh-60px)] w-full items-center justify-center">
+        <Spinner />
+      </div>
+    );
   }
 
   if (isError) {
@@ -57,31 +57,43 @@ export default function Page() {
   }
 
   if (!data) {
-    return (
-      <div className="flex min-h-[calc(100vh-160px)] flex-col items-center justify-center">
-        <Empty>No Tags Found</Empty>
-      </div>
-    );
+    return <div>No feed found</div>;
   }
 
   return (
-    <div className="flex flex-col gap-4 p-4">
-      {data?.data?.map((blog) => (
-        <BlogCard
-          key={blog.id}
-          content={blog.content}
-          id={blog.id}
-          title={blog.title}
-          author={blog.author}
-          author_profile_img=""
-          author_username="@undefined"
-          comment={[]}
-          published_at={blog.date_published}
-          slug=""
-          dislike={0}
-          like={0}
-        />
-      ))}
-    </div>
+    <main className="p-4">
+      <div className="flex flex-col gap-4">
+        {data?.pages?.map((page) => {
+          return page?.data?.map((post) => (
+            <BlogCard
+              id={post?._id}
+              key={post?._id}
+              author={post?.author?.fullname}
+              author_profile_img={post?.author?.avatar}
+              author_username={post?.author?.username}
+              comment={[]}
+              content={post?.content}
+              published_at={ConvertToReadableDateTimeUI(post?.created_at)}
+              slug={post?.slug}
+              tags={post?.tags}
+              title={post?.title}
+              dislike={post?.dislike}
+              like={post?.like}
+              banner={post?.banner}
+            />
+          ));
+        })}
+
+        {isFetchingNextPage ? (
+          <div className="flex min-h-80 items-center justify-center">
+            Loading...
+          </div>
+        ) : (
+          <div className="text-center">No more posts</div>
+        )}
+        <div ref={ref} className="min-h-10"></div>
+      </div>
+    </main>
   );
-}
+};
+export default page;
