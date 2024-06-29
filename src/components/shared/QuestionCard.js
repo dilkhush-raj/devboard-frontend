@@ -75,7 +75,9 @@ export default function QuestionCard({
           <CardMenu />
         </div>
 
-        <h2 className="text-xl font-bold dark:text-white">{title}</h2>
+        <Link href={`/ask-question/${slug}`}>
+          <h2 className="text-xl font-bold dark:text-white">{title}</h2>
+        </Link>
 
         <MDEditor.Markdown className="select-text" source={content} />
 
