@@ -4,6 +4,8 @@ import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import {ThemeProvider} from "@/context/ThemeProvider";
 import ReactQueryClientProvider from "@/components/ReactQueryClientProvider";
+import {Toaster} from "react-hot-toast";
+import {NextUIProviderWrapper} from "@/context/NextUIProvider";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -20,10 +22,15 @@ export default function RootLayout({children}) {
         <body
           className={
             inter.className +
-            " select-none bg-[#f5f5f5] dark:bg-darkColor-100 dark:text-lightColor-900"
+            " select-none dark:bg-darkColor-100 dark:text-lightColor-900"
           }
         >
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <NextUIProviderWrapper>
+              <Toaster />
+              {children}
+            </NextUIProviderWrapper>
+          </ThemeProvider>
         </body>
       </html>
     </ReactQueryClientProvider>
