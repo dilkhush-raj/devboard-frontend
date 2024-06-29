@@ -29,7 +29,7 @@ const page = () => {
     queryKey: ["feed"],
     queryFn: fetchFeed,
     initialPageParam: 1,
-    staleTime: 60 * 1000,
+    staleTime: 1000 * 60 * 60,
     getNextPageParam: (lastPage) => {
       if (lastPage.currentPage < lastPage.totalPages) {
         return lastPage.currentPage + 1;

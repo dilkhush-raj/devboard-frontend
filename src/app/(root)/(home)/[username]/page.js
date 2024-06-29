@@ -40,6 +40,7 @@ const UserProfile = () => {
       queryKey: [author],
       queryFn: fetchPosts,
       initialPageParam: 1,
+      staleTime: 1000 * 60 * 60,
       getNextPageParam: (lastPage) => {
         if (lastPage.currentPage < lastPage.totalPages) {
           return lastPage.currentPage + 1;
@@ -150,7 +151,11 @@ const UserProfile = () => {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-[calc(100vh-60px)] w-full items-center justify-center">
+        <Spinner />
+      </div>
+    );
   }
 
   if (isError) {

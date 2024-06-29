@@ -7,7 +7,7 @@ import {FiSearch} from "react-icons/fi";
 import Sidebar from "./Sidebar";
 import RightSidebar from "./RightSidebar";
 import {Kbd} from "@nextui-org/kbd";
-import {Avatar} from "@nextui-org/react";
+import {Avatar, Spinner} from "@nextui-org/react";
 
 export default function Navbar() {
   const searchInputRef = useRef(null);
@@ -121,7 +121,9 @@ export default function Navbar() {
       {isActive && (
         <div className="fixed left-0 right-0 top-[60px] z-50 mx-auto min-h-60 max-w-xl rounded-b-lg border border-t-0 border-border-100 bg-lightColor-900 px-7 py-2 shadow-md dark:bg-darkColor-200">
           {isLoading ? (
-            <p>Loading...</p>
+            <div className="flex h-60 items-center justify-center">
+              <Spinner />
+            </div>
           ) : (
             <ul>
               {results.map((result) => (
