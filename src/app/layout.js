@@ -6,6 +6,7 @@ import {ThemeProvider} from "@/context/ThemeProvider";
 import ReactQueryClientProvider from "@/components/ReactQueryClientProvider";
 import {Toaster} from "react-hot-toast";
 import {NextUIProviderWrapper} from "@/context/NextUIProvider";
+import "react-ripple-click/dist/index.css";
 
 const inter = Inter({subsets: ["latin"]});
 

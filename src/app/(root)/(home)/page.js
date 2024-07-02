@@ -8,12 +8,16 @@ import Answer from "@/components/shared/Answer";
 import {useEffect} from "react";
 import QuestionCard from "@/components/shared/QuestionCard";
 import {Spinner} from "@nextui-org/spinner";
+import {useSearchParams} from "next/navigation";
 
 const page = () => {
   const {ref, inView} = useInView();
+  const searchParams = useSearchParams();
+  const tag = searchParams.get("tags");
+  const tagQuery = tag ? `&tag=${tag}` : "";
 
   const fetchFeed = async ({pageParam}) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/feed?page=${pageParam}&limit=4`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/feed?page=${pageParam}&limit=4${tagQuery}`;
     const res = await axios.get(url);
     return res?.data;
   };
@@ -27,7 +31,7 @@ const page = () => {
     isFetchingNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ["feed"],
+    queryKey: ["feed", tag],
     queryFn: fetchFeed,
     initialPageParam: 1,
     staleTime: 1000 * 60 * 60,

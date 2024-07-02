@@ -25,7 +25,7 @@ const page = () => {
     isFetchingNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ["feed"],
+    queryKey: ["ask-question"],
     queryFn: fetchFeed,
     initialPageParam: 1,
     staleTime: 1000 * 60 * 60,

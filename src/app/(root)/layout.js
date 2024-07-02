@@ -1,10 +1,10 @@
 import Navbar from "@/components/Navbar";
 
-export default function Layout({ children }) {
+export default function Layout({children}) {
   return (
     <>
       <Navbar />
-      <div className="md:ml-[220px] mt-[60px] lg:mr-[300px] dark:text-white ">
+      <div className="mt-[60px] min-h-screen dark:text-white md:ml-[220px] lg:mr-[300px]">
         {children}
       </div>
     </>

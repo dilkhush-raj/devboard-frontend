@@ -11,6 +11,7 @@ import BlogCard from "@/components/shared/BlogCard";
 import ConvertToReadableDateTimeUI from "@/components/function/convertDateTime";
 import {Spinner} from "@nextui-org/react";
 import QuestionCard from "@/components/shared/QuestionCard";
+import Posts from "./Posts";
 
 const UserProfile = () => {
   const pathname = usePathname();
@@ -193,18 +194,31 @@ const UserProfile = () => {
         </div>
       </div>
 
-      <div className="mt-4 w-full rounded-lg border border-border-100 p-6 dark:border-darkColor-400 dark:bg-darkColor-200">
-        <h3 className="text-xl font-semibold">Stats</h3>
-        <hr className="my-2 border-border-100 dark:border-darkColor-400" />
-        <div className="flex flex-wrap gap-4 pt-2">
-          <Tag>Questions: {totalQuestions}</Tag>
-          <Tag>Blogs: {totalBlogs}</Tag>
-          <Tag>Points: {totalBlogs * 10}</Tag>
-          <Tag>Leaderboard Rank: 0</Tag>
+      <div className="mt-4 flex w-full gap-4 rounded-lg border border-border-100 p-6 dark:border-darkColor-400 dark:bg-darkColor-200">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <img
+            className="h-18 object-contain"
+            src={"/badges/legend.svg"}
+            alt="badges"
+          />
+          <div>Legend</div>
+        </div>
+        {/* <badgeImage className="h-24 w-24 rounded-full" /> */}
+        <div className="w-full">
+          <h3 className="text-xl font-semibold">Stats</h3>
+          <hr className="my-2 border-border-100 dark:border-darkColor-400" />
+          <div className="flex flex-wrap gap-4 pt-2">
+            <Tag>Questions: {totalQuestions}</Tag>
+            <Tag>Blogs: {totalBlogs}</Tag>
+            <Tag>Points: {totalBlogs * 10}</Tag>
+            <Tag>Leaderboard Rank: 0</Tag>
+          </div>
         </div>
       </div>
 
-      <TopPosts author={data?.data?._id} />
+      {/* <TopPosts author={data?.data?._id} /> */}
+
+      <Posts user={"6662338196e7a6fedc4229f2"} />
     </main>
   );
 };

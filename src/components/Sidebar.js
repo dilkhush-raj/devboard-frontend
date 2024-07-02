@@ -4,7 +4,7 @@ import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {useState} from "react";
 import {IoMenu, IoClose} from "react-icons/io5";
-import {Button} from "@nextui-org/button";
+import {Ripple} from "react-ripple-click";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -20,18 +20,19 @@ export default function Sidebar() {
           {navLinks.map((item) => {
             const isActive =
               (pathname.includes(item.slug) && item.slug.length > 1) ||
-              pathname === item.slug
-                ? "bg-gradient-primary text-white"
-                : "bg-transparent";
+              pathname === item.slug;
             return (
               <div key={item?.slug}>
-                <Link href={item?.slug} onClick={() => setOpen(false)}>
-                  <Button
-                    className={` ${isActive} flex w-full items-center justify-start gap-4 rounded-md px-4 py-6 text-base hover:bg-lightColor-700 dark:hover:bg-darkColor-400`}
-                  >
-                    {item?.icon}
-                    {item?.label}
-                  </Button>
+                <Link
+                  href={item?.slug}
+                  onClick={() => setOpen(false)}
+                  className={`${
+                    isActive ? "bg-gradient-primary text-lightColor-900" : ""
+                  } relative isolate flex items-center justify-start gap-4 overflow-hidden rounded-md bg-transparent px-4 py-3 hover:bg-lightColor-700 dark:hover:bg-darkColor-400`}
+                >
+                  {item?.icon}
+                  {item?.label}
+                  <Ripple />
                 </Link>
               </div>
             );

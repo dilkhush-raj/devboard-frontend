@@ -7,7 +7,7 @@ import MDEditor from "@uiw/react-md-editor";
 import ShareButtons from "../ui/ShareButton";
 import CardMenu from "../ui/CardMenu";
 import {FaCalendarAlt} from "react-icons/fa";
-import {Button} from "@nextui-org/button";
+import {Button} from "../ui/button";
 
 /**
  * BlogCard component to display a blog card with author details, like/dislike functionality, comments, and sharing options.
@@ -125,9 +125,7 @@ export default function BlogCard({
           <div className="text-sm">{contentToShow}</div>
           <div>Author: {author}</div>
           <Link href={`/blogs/${slug}`}>
-            <Button className="rounded-lg bg-gradient-primary text-white">
-              Read
-            </Button>
+            <Button>Read</Button>
           </Link>
         </div>
       </div>

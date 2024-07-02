@@ -4,15 +4,14 @@ import {useInfiniteQuery} from "@tanstack/react-query";
 import axios from "axios";
 import {useInView} from "react-intersection-observer";
 import BlogCard from "@/components/shared/BlogCard";
-import Answer from "@/components/shared/Answer";
 import {useEffect} from "react";
 import {Spinner} from "@nextui-org/react";
 
-const page = () => {
+export default function UserBlog({author}) {
   const {ref, inView} = useInView();
 
   const fetchFeed = async ({pageParam}) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/feed/blog?page=${pageParam}&limit=5`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/author/${author}?page=${pageParam}&limit=5`;
     const res = await axios.get(url);
     return res?.data;
   };
@@ -61,7 +60,7 @@ const page = () => {
   }
 
   return (
-    <main className="p-4">
+    <main className="">
       <div className="flex flex-col gap-4">
         {data?.pages?.map((page) => {
           return page?.data?.map((post) => (
@@ -95,5 +94,4 @@ const page = () => {
       </div>
     </main>
   );
-};
-export default page;
+}
