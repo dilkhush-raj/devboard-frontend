@@ -1,19 +1,11 @@
-"use client"
-import dynamic from "next/dynamic";
-import { useState } from "react";
+"use client";
+import "@blocknote/core/fonts/inter.css";
+import {BlockNoteView} from "@blocknote/mantine";
+import "@blocknote/mantine/style.css";
+import {useCreateBlockNote} from "@blocknote/react";
 
-const MDEditor = dynamic(
-  () => import("@uiw/react-md-editor"),
-  { ssr: false }
-);
+export default function Editor() {
+  const editor = useCreateBlockNote();
 
-function Editor() {
-  const [value, setValue] = useState("**Hello world!!!**");
-  return (
-    <div>
-      <MDEditor value={value} onChange={setValue} />
-    </div>
-  );
+  return <BlockNoteView editor={editor} className="bg-transparent" />;
 }
-
-export default Editor;
