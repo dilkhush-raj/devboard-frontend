@@ -11,6 +11,8 @@ import {IoMdPricetags} from "react-icons/io";
 import {IoMdSave} from "react-icons/io";
 import {MdReport} from "react-icons/md";
 
+import {MdAccountCircle} from "react-icons/md";
+import {RiSettings4Fill} from "react-icons/ri";
 /**
  * Available themes for the application.
  * Each theme includes a value, label, and an icon.
@@ -68,6 +70,25 @@ export const CardMenuData = [
     icon: <MdReport />,
     onClick: () => {
       alert("Report");
+    },
+  },
+];
+
+export const NavbarAvatarMenuData = [
+  {
+    label: "Account",
+    icon: <MdAccountCircle />,
+    link: "/account",
+    onClick: () => {
+      alert("Profile");
+    },
+  },
+  {
+    label: "Settings",
+    icon: <RiSettings4Fill />,
+    link: "/settings",
+    onClick: () => {
+      alert("Settings");
     },
   },
 ];
