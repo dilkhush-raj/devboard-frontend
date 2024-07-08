@@ -44,10 +44,8 @@ const page = () => {
     if (data?.pages?.length !== 0 && ref2.current) {
       setIsConfettiActive(true);
       const element = ref2.current;
-      console.log(ref2);
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
-      const startX = element.offsetLeft / viewportWidth;
       const bottomY =
         viewportHeight / (element.clientHeight + element.offsetTop);
       const end = Date.now() + 2 * 1000;
@@ -233,11 +231,11 @@ const page = () => {
         </div>
       </div>
       {/* Remaining users */}
-      <div className="flex flex-col gap-4 p-4">
+      <div className="flex flex-col gap-2 p-2 sm:gap-4 sm:p-4">
         {remainingUsers.map((user, index) => (
           <div
             key={user.username}
-            className="grid grid-cols-2 items-center justify-between gap-2 rounded-lg border border-border-100 p-4 pr-8 dark:border-darkColor-400 dark:bg-darkColor-300"
+            className="grid grid-cols-[1fr_80px] items-center justify-between rounded-lg border border-border-100 p-2 dark:border-darkColor-400 dark:bg-darkColor-300 sm:grid-cols-2 sm:gap-2 sm:p-4 sm:pr-8"
           >
             <Link
               href={`/@${user.username}`}
