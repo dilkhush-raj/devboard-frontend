@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import Logo from "@/assets/logo";
 import Sidebar from "@/components/Sidebar";
