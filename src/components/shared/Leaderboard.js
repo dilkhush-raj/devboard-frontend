@@ -4,6 +4,7 @@ import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
 import confetti from "canvas-confetti";
 import {PiConfettiBold} from "react-icons/pi";
+import {motion} from "framer-motion";
 
 export default function Leaderboard({data}) {
   const ref = useRef(null);
@@ -50,7 +51,9 @@ export default function Leaderboard({data}) {
   };
 
   useEffect(() => {
-    handleConfetti();
+    setTimeout(() => {
+      handleConfetti();
+    }, 300);
   }, [data, ref]);
 
   const getOrdinal = (number) => {
@@ -74,103 +77,120 @@ export default function Leaderboard({data}) {
 
   return (
     <main ref={ref} className="relative">
-      <div className="relative mb-4 flex items-end justify-center border-b border-border-100 bg-gradient-to-tr from-[#b5c6e0] to-[#ebf4f5] px-2 pt-[200px] dark:border-darkColor-400 dark:from-[#000000] dark:to-[#130F40]">
-        <button
-          onClick={handleConfetti}
-          className="absolute bottom-5 left-5 z-10 text-xl"
-          disabled={isConfettiActive}
-        >
-          <PiConfettiBold />
-        </button>
-        {/* 2nd */}
-        <div className="relative flex h-[300px] w-40 justify-center rounded-tl-lg border-border-100 bg-gradient-to-tr from-[#61f4de] to-[#6e78ff]">
-          {topThreeUsers[1] && (
-            <Link
-              href={`/@${topThreeUsers[1].username}`}
-              className="flex flex-col items-center justify-end py-10"
-            >
-              <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
-                <Avatar
-                  src={topThreeUsers[1].avatar}
-                  isBordered
-                  classNames={{
-                    base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                    icon: "text-black/80",
-                  }}
-                />
-                <div>{topThreeUsers[1].fullname}</div>
-                <div className="text-xs">@{topThreeUsers[1].username}</div>
-              </div>
-              <div className="flex flex-col items-center justify-center">
-                <img
-                  src="/badges/Silver.svg"
-                  className="aspect-square w-20 object-contain"
-                />
-                <div className="text-3xl font-bold">2nd</div>
-                <div>{topThreeUsers[1].credit} pts</div>
-              </div>
-            </Link>
-          )}
-        </div>
-        {/* 1st */}
-        <div className="relative flex h-[400px] w-40 justify-center rounded-t-lg bg-gradient-to-tr from-[#e62314] to-[#f19e18]">
-          {topThreeUsers[0] && (
-            <Link
-              href={`/@${topThreeUsers[0].username}`}
-              className="flex flex-col items-center justify-end py-10"
-            >
-              <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
-                <Avatar
-                  src={topThreeUsers[0].avatar}
-                  isBordered
-                  classNames={{
-                    base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                    icon: "text-black/80",
-                  }}
-                />
-                <div>{topThreeUsers[0].fullname}</div>
-                <div className="text-xs">@{topThreeUsers[0].username}</div>
-              </div>
-              <div className="flex flex-col items-center justify-center">
-                <img
-                  src="/badges/Champion.svg"
-                  className="aspect-square w-20 object-contain"
-                />
-                <div className="text-3xl font-bold">1st</div>
-                <div>{topThreeUsers[0].credit} pts</div>
-              </div>
-            </Link>
-          )}
-        </div>
-        {/* 3rd */}
-        <div className="relative flex h-[250px] w-40 justify-center rounded-tr-lg bg-gradient-to-tr from-[#51c26f] to-[#f2e901]">
-          {topThreeUsers[2] && (
-            <Link
-              href={`/@${topThreeUsers[2].username}`}
-              className="flex flex-col items-center justify-end py-10"
-            >
-              <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
-                <Avatar
-                  src={topThreeUsers[2].avatar}
-                  isBordered
-                  classNames={{
-                    base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                    icon: "text-black/80",
-                  }}
-                />
-                <div>{topThreeUsers[2].fullname}</div>
-                <div className="text-xs">@{topThreeUsers[2].username}</div>
-              </div>
-              <dvi className="flex flex-col items-center justify-center">
-                <img
-                  src="/badges/gold.svg"
-                  className="aspect-square w-20 object-contain"
-                />
-                <div className="text-3xl font-bold">3rd</div>
-                <div>{topThreeUsers[2].credit} pts</div>
-              </dvi>
-            </Link>
-          )}
+      <div className="mb-4 overflow-hidden">
+        <div className="relative flex items-end justify-center border-b border-border-100 bg-gradient-to-tr from-[#b5c6e0] to-[#ebf4f5] px-2 pt-[200px] dark:border-darkColor-400 dark:from-[#000000] dark:to-[#130F40]">
+          <button
+            onClick={handleConfetti}
+            className="absolute bottom-5 left-5 z-10 text-xl"
+            disabled={isConfettiActive}
+          >
+            <PiConfettiBold />
+          </button>
+          {/* 2nd */}
+          <motion.div
+            className="relative flex h-[300px] w-40 justify-center rounded-tl-lg border-border-100 bg-gradient-to-tr from-[#61f4de] to-[#6e78ff]"
+            initial={{y: 410}}
+            animate={{y: 0}}
+            transition={{type: "spring", stiffness: 100, delay: 0.1}}
+          >
+            {topThreeUsers[1] && (
+              <Link
+                href={`/@${topThreeUsers[1].username}`}
+                className="flex flex-col items-center justify-end py-10"
+              >
+                <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
+                  <Avatar
+                    src={topThreeUsers[1].avatar}
+                    isBordered
+                    classNames={{
+                      base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
+                      icon: "text-black/80",
+                    }}
+                  />
+                  <div>{topThreeUsers[1].fullname}</div>
+                  <div className="text-xs">@{topThreeUsers[1].username}</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                  <img
+                    src="/badges/Silver.svg"
+                    className="aspect-square w-20 object-contain"
+                  />
+                  <div className="text-3xl font-bold">2nd</div>
+                  <div>{topThreeUsers[1].credit} pts</div>
+                </div>
+              </Link>
+            )}
+          </motion.div>
+          {/* 1st */}
+          <motion.div
+            className="relative flex h-[400px] w-40 justify-center rounded-t-lg bg-gradient-to-tr from-[#e62314] to-[#f19e18]"
+            initial={{y: 510}}
+            animate={{y: 0}}
+            transition={{type: "spring", stiffness: 100, delay: 0.2}}
+          >
+            {topThreeUsers[0] && (
+              <Link
+                href={`/@${topThreeUsers[0].username}`}
+                className="flex flex-col items-center justify-end py-10"
+              >
+                <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
+                  <Avatar
+                    src={topThreeUsers[0].avatar}
+                    isBordered
+                    classNames={{
+                      base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
+                      icon: "text-black/80",
+                    }}
+                  />
+                  <div>{topThreeUsers[0].fullname}</div>
+                  <div className="text-xs">@{topThreeUsers[0].username}</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                  <img
+                    src="/badges/Champion.svg"
+                    className="aspect-square w-20 object-contain"
+                  />
+                  <div className="text-3xl font-bold">1st</div>
+                  <div>{topThreeUsers[0].credit} pts</div>
+                </div>
+              </Link>
+            )}
+          </motion.div>
+          {/* 3rd */}
+          <motion.div
+            className="relative flex h-[250px] w-40 justify-center rounded-tr-lg bg-gradient-to-tr from-[#51c26f] to-[#f2e901]"
+            initial={{y: 360}}
+            animate={{y: 0}}
+            transition={{type: "spring", stiffness: 100, delay: 0.3}}
+          >
+            {topThreeUsers[2] && (
+              <Link
+                href={`/@${topThreeUsers[2].username}`}
+                className="flex flex-col items-center justify-end py-10"
+              >
+                <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
+                  <Avatar
+                    src={topThreeUsers[2].avatar}
+                    isBordered
+                    classNames={{
+                      base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
+                      icon: "text-black/80",
+                    }}
+                  />
+                  <div>{topThreeUsers[2].fullname}</div>
+                  <div className="text-xs">@{topThreeUsers[2].username}</div>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                  <img
+                    src="/badges/gold.svg"
+                    className="aspect-square w-20 object-contain"
+                  />
+                  <div className="text-3xl font-bold">3rd</div>
+                  <div>{topThreeUsers[2].credit} pts</div>
+                </div>
+              </Link>
+            )}
+          </motion.div>
         </div>
       </div>
       {/* Remaining users */}
@@ -211,3 +231,7 @@ export default function Leaderboard({data}) {
     </main>
   );
 }
+
+// const Rankings = ({ topThreeUsers }) => (
+
+// );
