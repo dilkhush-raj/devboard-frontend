@@ -182,7 +182,7 @@ export default function Leaderboard({data}) {
                 </div>
                 <div className="flex flex-col items-center justify-center">
                   <img
-                    src="/badges/gold.svg"
+                    src="/badges/Gold.svg"
                     className="aspect-square w-20 object-contain"
                   />
                   <div className="text-3xl font-bold">3rd</div>
@@ -231,7 +231,3 @@ export default function Leaderboard({data}) {
     </main>
   );
 }
-
-// const Rankings = ({ topThreeUsers }) => (
-
-// );
