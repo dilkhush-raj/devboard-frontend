@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import "@mdxeditor/editor/style.css";
 
 export default function Layout({children}) {
   return (

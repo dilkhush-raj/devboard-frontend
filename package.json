@@ -12,6 +12,7 @@
     "@blocknote/core": "^0.14.5",
     "@blocknote/mantine": "^0.14.6",
     "@blocknote/react": "^0.14.6",
+    "@mdxeditor/editor": "^3.8.0",
     "@nextui-org/react": "^2.4.2",
     "@nextui-org/theme": "^2.2.6",
     "@radix-ui/react-hover-card": "^1.0.7",
