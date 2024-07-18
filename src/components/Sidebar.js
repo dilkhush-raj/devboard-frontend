@@ -14,7 +14,7 @@ export default function Sidebar() {
     <>
       <div
         className={`${
-          open ? "" : "translate-x-[-100%]"
+          open ? "translate-x-0" : "translate-x-[-100%]"
         } dark:border-dark-400 fixed bottom-0 left-0 top-[60px] flex h-[calc(100vh-60px)] w-[220px] flex-col justify-between gap-4 overflow-y-auto border-r border-border-100 bg-lightColor-900 p-4 transition-transform duration-300 dark:border-darkColor-400 dark:bg-darkColor-200 md:translate-x-0`}
       >
         <div className="flex flex-col gap-3">
