@@ -7,7 +7,7 @@ import BlogCard from "@/components/shared/BlogCard";
 import {useEffect} from "react";
 import {Spinner} from "@nextui-org/react";
 
-export default function UserBlog({author}) {
+export default function UserAnswer({author}) {
   const {ref, inView} = useInView();
 
   const fetchFeed = async ({pageParam}) => {
@@ -25,7 +25,7 @@ export default function UserBlog({author}) {
     isFetchingNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ["blog"],
+    queryKey: ["userBlog", author],
     queryFn: fetchFeed,
     initialPageParam: 1,
     staleTime: 1000 * 60 * 60,
