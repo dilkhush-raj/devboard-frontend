@@ -1,24 +1,31 @@
 function convertToReadableDateTime(isoDateString) {
   const date = new Date(isoDateString);
-  const istDate = new Date(date.getTime());
-  const dateOptions = {day: "numeric", month: "long", year: "numeric"};
-  const readableDate = istDate.toLocaleDateString("en-IN", dateOptions);
+  const now = new Date();
+  const diffInSeconds = Math.floor((now - date) / 1000);
+  const diffInMinutes = Math.floor(diffInSeconds / 60);
+  const diffInHours = Math.floor(diffInMinutes / 60);
+  const diffInDays = Math.floor(diffInHours / 24);
 
-  // Format the time
-  const timeOptions = {
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-    hour12: true,
-  };
-  const readableTime = istDate.toLocaleTimeString("en-IN", timeOptions);
-
-  return `${readableDate}, ${readableTime}`;
+  // Determine the readable time difference
+  if (diffInSeconds < 60) {
+    return `${diffInSeconds} seconds ago`;
+  } else if (diffInMinutes < 60) {
+    return `${diffInMinutes} minutes ago`;
+  } else if (diffInHours < 24) {
+    return `${diffInHours} hours ago`;
+  } else if (diffInDays < 1) {
+    return "today";
+  } else if (diffInDays < 2) {
+    return "yesterday";
+  } else {
+    const dateOptions = {day: "numeric", month: "long", year: "numeric"};
+    return date.toLocaleDateString("en-IN", dateOptions);
+  }
 }
 
 export {convertToReadableDateTime};
 
 export default function ConvertToReadableDateTimeUI(isoDateString) {
   const data = convertToReadableDateTime(isoDateString);
-  return <>{data}</>;
+  return <span>{data}</span>;
 }

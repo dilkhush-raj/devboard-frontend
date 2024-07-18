@@ -1,40 +1,21 @@
-"use client";
-import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
 import Tag from "@/components/ui/Tag";
-import Loading from "./loading";
-import Empty from "@/components/ui/Empty";
 import Link from "next/link";
 
-export default function TagsPage() {
-  const fetchTags = async () => {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/tags/list?page=1&limit=20`
-    );
-    return res?.data;
-  };
-
-  const {isPending, isError, data, error} = useQuery({
-    queryKey: ["tags"],
-    queryFn: fetchTags,
-    staleTime: 1000 * 60 * 60,
-  });
-
-  if (isPending) {
-    return <Loading />;
+async function getTagsData() {
+  const page = 1;
+  const limit = 50;
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/tags/list?page=${page}&limit=${limit}`,
+    {next: {revalidate: 86400}}
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch tag data");
   }
+  return res.json();
+}
 
-  if (isError) {
-    console.log(error);
-  }
-
-  if (!data) {
-    return (
-      <div className="flex min-h-[calc(100vh-160px)] flex-col items-center justify-center">
-        <Empty>No Tags Found</Empty>
-      </div>
-    );
-  }
+export default async function TagsPage() {
+  const data = await getTagsData();
 
   return (
     <div className="grid grid-cols-2 gap-4 p-4 md:grid-cols-3">

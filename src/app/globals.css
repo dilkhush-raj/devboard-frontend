@@ -9,3 +9,79 @@
 .dark .wmde-markdown pre {
   background-color: #21273400 !important;
 }
+
+.dark-editor {
+  color: white;
+  background: transparent;
+}
+
+.mdxeditor h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.mdxeditor h2 {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.mdxeditor h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.mdxeditor h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.mdxeditor h5 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.mdxeditor h6 {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.mdxeditor p {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.mdxeditor ul {
+  list-style-type: disc;
+}
+
+.mdxeditor ol {
+  list-style-type: decimal;
+}
+
+.mdxeditor li {
+  margin-left: 1rem;
+}
+
+.mdxeditor blockquote span {
+  border-left: 4px solid rgb(232, 232, 244);
+  font-style: italic;
+  padding-left: 1rem;
+}
+
+.dark-editor .ͼo {
+  background-color: black !important;
+}
+
+.dark-editor .ͼ2 .cm-activeLineGutter {
+  background-color: black !important;
+}
+
+.dark ._editorRoot_yms4a_53 {
+  --basePageBg: #0f1116 !important;
+  --baseBg: #161821 !important;
+  --baseBgActive: #212734 !important;
+}
+
+.cm-line {
+  filter: saturate(200%) brightness(120%) !important;
+}

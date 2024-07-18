@@ -1,10 +1,20 @@
 "use client";
-import { useState } from "react";
-import { HiOutlineDotsVertical } from "react-icons/hi";
-import { CardMenuData } from "@/constants";
+import {useState} from "react";
+import {HiOutlineDotsVertical} from "react-icons/hi";
+import {CardMenuData} from "@/constants";
+import axios from "axios";
 
-export default function CardMenu() {
+export default function CardMenu({contentType, id}) {
   const [open, setOpen] = useState(false);
+
+  const handleSave = () => {
+    // post request to save blog to /api/v1/saved/create
+    axios.post("/api/v1/saved/create", {
+      content: id,
+      contentType: contentType,
+    });
+  };
+
   return (
     <>
       <div className="pr-2 text-lg" onClick={() => setOpen(!open)}>
@@ -13,14 +23,14 @@ export default function CardMenu() {
       <div
         className={`${
           open ? "visible" : "hidden"
-        } z-20 absolute top-14 right-8 flex gap-4 flex-col shadow-md min-w-40 bg-lightColor-850 rounded-lg dark:bg-darkColor-400 p-4`}
+        } absolute right-8 top-14 z-20 flex min-w-40 flex-col gap-4 rounded-lg bg-lightColor-850 p-4 shadow-md dark:bg-darkColor-400`}
       >
         {CardMenuData?.map((item) => (
           <div
             key={item.label}
-            className={`${item.color} flex items-center gap-2 cursor-pointer rounded-lg`}
+            className={`${item.color} flex cursor-pointer items-center gap-2 rounded-lg`}
             onClick={() => {
-              item?.onClick();
+              item?.onClick({contentType, id});
               setOpen(!open);
             }}
           >
@@ -31,7 +41,7 @@ export default function CardMenu() {
       </div>
       <div
         onClick={() => setOpen(!open)}
-        className={`${open ? "visible" : "hidden"} z-10 fixed inset-0`}
+        className={`${open ? "visible" : "hidden"} fixed inset-0 z-10`}
       >
         {/* Maskable Area */}
       </div>

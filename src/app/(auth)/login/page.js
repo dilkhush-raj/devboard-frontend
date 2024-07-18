@@ -7,6 +7,7 @@ import Logo from "@/assets/logo";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
 import {toast} from "react-hot-toast";
+import useUserStore from "@/stores/useUserStore";
 
 export default function LoginForm() {
   const {
@@ -18,6 +19,8 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
+  const updateUser = useUserStore((state) => state.setUser);
+
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
@@ -25,11 +28,14 @@ export default function LoginForm() {
         {
           username: data.username,
           password: data.password,
+        },
+        {
+          withCredentials: true, // This is important to include cookies in requests
         }
       );
+      const user = response.data.user;
+      updateUser(user);
       toast.success("Successfully Logged In");
-      localStorage.setItem("accessToken", response.data.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.data.refreshToken);
       router.push("/");
     } catch (error) {
       if (error.response && error.response.status === 401) {

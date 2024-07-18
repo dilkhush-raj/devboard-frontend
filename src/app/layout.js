@@ -1,4 +1,4 @@
-import {Inter} from "next/font/google";
+import {DM_Sans} from "next/font/google";
 import "./globals.css";
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
@@ -8,7 +8,7 @@ import {Toaster} from "react-hot-toast";
 import {NextUIProviderWrapper} from "@/context/NextUIProvider";
 import "react-ripple-click/dist/index.css";
 
-const inter = Inter({subsets: ["latin"]});
+const dmSans = DM_Sans({subsets: ["latin"]});
 
 export const metadata = {
   title: "DevBoard",
@@ -22,7 +22,7 @@ export default function RootLayout({children}) {
       <html lang="en" suppressHydrationWarning>
         <body
           className={
-            inter.className +
+            dmSans.className +
             " select-none dark:bg-darkColor-100 dark:text-lightColor-900"
           }
         >
