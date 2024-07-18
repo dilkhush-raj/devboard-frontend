@@ -26,18 +26,21 @@ import {createJSONStorage, persist} from "zustand/middleware";
  */
 
 const initialState = {
-  id: null,
-  username: "",
-  fullname: "",
-  email: "",
-  avatar: "",
-  bio: "",
-  interests: [],
-  permissions: [],
-  roles: [],
-  credit: 0,
-  verified: false,
-  joinedOn: null,
+  isAuth: false,
+  user: {
+    id: null,
+    username: "",
+    fullname: "",
+    email: "",
+    avatar: "",
+    bio: "",
+    interests: [],
+    permissions: [],
+    roles: [],
+    credit: 0,
+    verified: false,
+    joinedOn: null,
+  },
 };
 
 /**
@@ -47,8 +50,8 @@ const initialState = {
 const useUserStore = create(
   persist(
     (set) => ({
-      user: {...initialState},
-      setUser: (newUser) => set({user: newUser}),
+      auth: {...initialState},
+      setUser: (newUser) => set({user: newUser, isAuth: true}),
       resetUser: () => set({user: {...initialState}}),
       setUserProperty: (property, value) =>
         set((state) => ({
@@ -56,8 +59,8 @@ const useUserStore = create(
         })),
     }),
     {
-      name: "user-storage", // name of the item in storage
-      storage: createJSONStorage(() => sessionStorage), // function to get the storage mechanism
+      name: "auth", // name of the item in storage
+      storage: createJSONStorage(() => localStorage), // function to get the storage mechanism
     }
   )
 );
@@ -80,5 +83,17 @@ const useSetUser = () => useUserStore((state) => state.setUser);
  */
 const useSetUserProperty = () => useUserStore((state) => state.setUserProperty);
 
-export {useUserStore, useUsername, useSetUser, useSetUserProperty};
+/**
+ * Custom hook to reset user.
+ * @returns {() => void} The resetUser function.
+ */
+const useResetUser = () => useUserStore((state) => state.resetUser);
+
+export {
+  useUserStore,
+  useUsername,
+  useSetUser,
+  useSetUserProperty,
+  useResetUser,
+};
 export default useUserStore;
