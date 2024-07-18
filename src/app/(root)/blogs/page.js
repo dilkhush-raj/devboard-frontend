@@ -12,7 +12,7 @@ const page = () => {
   const {ref, inView} = useInView();
 
   const fetchFeed = async ({pageParam}) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/feed/blog?page=${pageParam}&limit=5`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/feed/blog?page=${pageParam}`;
     const res = await axios.get(url);
     return res?.data;
   };
