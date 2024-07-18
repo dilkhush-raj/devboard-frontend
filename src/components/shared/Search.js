@@ -1,5 +1,5 @@
 "use client";
-import {Spinner} from "@nextui-org/react";
+import {Spinner} from "@nextui-org/spinner";
 import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
 import {FiSearch} from "react-icons/fi";
@@ -53,7 +53,7 @@ export default function Search() {
             }
           }, 100);
         }}
-        className="fixed right-[80px] flex items-center gap-2 rounded-lg px-4 py-2 sm:right-[115px] md:static md:w-full md:max-w-[400px] md:justify-between md:border md:border-border-100 md:dark:border-darkColor-400"
+        className="fixed right-[90px] flex items-center gap-2 rounded-lg px-4 py-2 sm:right-[115px] md:static md:w-full md:max-w-[400px] md:justify-between md:border md:border-border-100 md:dark:border-darkColor-400"
       >
         <div className="flex items-center gap-2">
           <span className="text-lg">
@@ -112,8 +112,6 @@ const SearchComponent = ({inputRef}) => {
     }
   };
 
-  // console.log(results);
-
   return (
     <div className="fixed inset-0 bottom-auto top-[100px] z-50 mx-auto max-h-[50vh] min-h-[500px] w-full max-w-[600px] bg-darkColor-400/30 text-white backdrop-blur-lg md:rounded-lg">
       <div className="flex items-center gap-4 border-b border-border-100 p-3 pr-5">
@@ -133,7 +131,7 @@ const SearchComponent = ({inputRef}) => {
             <Spinner />
           </div>
         ) : (
-          <div className="hide-scrollbar flex max-h-[50vh] min-h-[400px] flex-col gap-4 overflow-auto p-4">
+          <div className="flex max-h-[50vh] min-h-[400px] flex-col gap-4 overflow-auto p-4 hide-scrollbar">
             {results.map((result) => (
               <div key={result._id} className="">
                 <Link
@@ -143,10 +141,7 @@ const SearchComponent = ({inputRef}) => {
                     <div className="absolute -top-3 px-2 py-1 text-xs font-medium capitalize">
                       {result.type}
                     </div>
-                    <h3 className="text-lg font-bold">{result.title}</h3>
-                    <p className="text-sm">
-                      {result.content.substring(0, 100)}...
-                    </p>
+                    <div className="">{result.title}</div>
                   </div>
                 </Link>
               </div>
