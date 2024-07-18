@@ -33,6 +33,7 @@ import {User} from "@nextui-org/user";
  */
 
 export default function QuestionCard({
+  id,
   slug,
   title,
   published_at,
@@ -45,6 +46,7 @@ export default function QuestionCard({
   comment = [],
   tags = [],
 }) {
+  const contentToShow = content?.slice(0, 200) + "...";
   return (
     <div className="relative rounded-lg border border-border-100 bg-white p-4 shadow-sm dark:border-darkColor-400 dark:bg-darkColor-300">
       <div className="flex flex-col gap-4">
@@ -55,11 +57,15 @@ export default function QuestionCard({
               className="flex items-center gap-2"
             >
               <Avatar
+                src={author_profile_img}
                 showFallback
+                disableAnimation
                 isBordered
                 size="sm"
-                name={author}
-                src={author_profile_img}
+                classNames={{
+                  base: "bg-gradient-to-br z-10 cursor-pointer from-[#2563EB] to-[#2196F3]",
+                  icon: "text-black/80",
+                }}
               />
               <div className="flex flex-col justify-center">
                 <div className="text-sm">{author}</div>
@@ -72,14 +78,14 @@ export default function QuestionCard({
               <FaCalendarAlt /> {published_at}
             </div>
           </div>
-          <CardMenu />
+          <CardMenu contentType="Question" id={id} />
         </div>
 
         <Link href={`/ask-question/${slug}`}>
           <h2 className="text-xl font-bold dark:text-white">{title}</h2>
         </Link>
 
-        <MDEditor.Markdown className="select-text" source={content} />
+        <MDEditor.Markdown className="select-text" source={contentToShow} />
 
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
