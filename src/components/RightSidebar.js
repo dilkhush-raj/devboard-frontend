@@ -34,17 +34,25 @@ export default async function RightSidebar() {
 
   return (
     <div className="dark:border-dark-400 fixed bottom-0 right-0 top-[60px] hidden h-[calc(100vh-60px)] w-[300px] overflow-y-auto border-l border-border-100 bg-lightColor-900 p-2 dark:border-darkColor-400 dark:bg-darkColor-200 lg:flex lg:flex-col">
-      <h2 className="my-4 text-lg font-semibold">Popular Blog Articles</h2>
-      <div className="flex flex-col flex-wrap gap-4">
+      <h2 className="text-lg font-semibold text-primary-400">
+        Popular Articles
+      </h2>
+      <div className="flex flex-col flex-wrap gap-1">
         {blogData?.data?.map((blog) => (
-          <Link key={blog?._id} href={`/blogs/${blog?.slug}`}>
-            <div className="underlineborder rounded-lg border border-border-100 bg-white p-2 text-sm font-medium shadow-sm dark:border-darkColor-400 dark:bg-darkColor-300">
+          <Link
+            key={blog?._id}
+            href={`/blogs/${blog?.slug}`}
+            className="flex gap-2 border-b border-border-100 pb-2 dark:border-darkColor-400"
+          >
+            <div className="underlineborder break-words rounded-lg p-2 text-sm font-medium shadow-sm">
               {blog?.title}
             </div>
           </Link>
         ))}
       </div>
-      <h2 className="my-4 text-lg font-semibold">Popular Tags</h2>
+      <h2 className="mb-2 mt-4 text-lg font-semibold text-primary-400">
+        Popular Tags
+      </h2>
       <div className="flex flex-wrap gap-2">
         {tagData?.data?.tags?.map((tag) => (
           <Link key={tag?._id} href={`/?tags=${tag?.name}`}>
