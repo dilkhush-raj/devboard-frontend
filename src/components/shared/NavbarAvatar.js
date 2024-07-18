@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import {useState} from "react";
 import {Ripple} from "react-ripple-click";
@@ -41,7 +40,11 @@ export default function NavbarAvatar({imgSrc}) {
             {open && (
               <div className="fixed right-2 top-[68px] z-10 flex w-max min-w-[300px] flex-col overflow-hidden rounded-lg border border-border-100 bg-darkColor-300 text-base dark:border-darkColor-400">
                 <div className="flex items-center justify-between gap-4 p-4 pb-0">
-                  <Link href={`/@${user?.username}`} className="text-sm">
+                  <Link
+                    href={`/@${user?.username}`}
+                    onClick={() => setOpen(false)}
+                    className="text-sm"
+                  >
                     My Profile
                   </Link>
                   <button onClick={handleLogout}>Logout</button>
@@ -51,7 +54,13 @@ export default function NavbarAvatar({imgSrc}) {
                   <div className="whitespace-nowrap text-xl font-bold">
                     {user?.fullname}
                   </div>
-                  <div className="">@{user?.username}</div>
+                  <Link
+                    href={`/@${user?.username}`}
+                    onClick={() => setOpen(false)}
+                    className="text-sm"
+                  >
+                    @{user?.username}
+                  </Link>
                 </d>
                 <div className="flex items-center gap-2 p-10 pt-0">
                   {user?.interests?.map((interest) => (
