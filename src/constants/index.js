@@ -13,6 +13,7 @@ import {MdReport} from "react-icons/md";
 
 import {MdAccountCircle} from "react-icons/md";
 import {RiSettings4Fill} from "react-icons/ri";
+import axios from "axios";
 /**
  * Available themes for the application.
  * Each theme includes a value, label, and an icon.
@@ -40,7 +41,7 @@ export const navLinks = [
   {slug: "/", label: "Home", icon: <RiHomeFill />},
   {slug: "/blogs", label: "Blogs", icon: <PiNewspaperClippingFill />},
   {
-    slug: "/ask-question",
+    slug: "/questions",
     label: "Ask Question",
     icon: <BsFillPatchQuestionFill />,
   },
@@ -61,15 +62,27 @@ export const CardMenuData = [
   {
     label: "Save",
     icon: <IoMdSave />,
-    onClick: () => {
-      alert("Save");
+    onClick: ({contentType, id}) => {
+      // post request to save blog to /api/v1/saved/create
+      axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/saved/create`,
+        {
+          content: id,
+          contentType: contentType,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      alert("Saved");
     },
   },
   {
     label: "Report",
     icon: <MdReport />,
     onClick: () => {
-      alert("Report");
+      alert("Reported successfully");
     },
   },
 ];
@@ -86,7 +99,7 @@ export const NavbarAvatarMenuData = [
   {
     label: "Settings",
     icon: <RiSettings4Fill />,
-    link: "/settings",
+    link: "/account/settings",
     onClick: () => {
       alert("Settings");
     },
