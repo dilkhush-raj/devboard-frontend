@@ -5,7 +5,6 @@ import {PiArrowFatUpFill, PiArrowFatDownFill} from "react-icons/pi";
 import {HiOutlineDotsVertical} from "react-icons/hi";
 import {FaCommentAlt} from "react-icons/fa";
 import {useState} from "react";
-import MDEditor from "@uiw/react-md-editor";
 import ShareButtons from "../ui/ShareButton";
 
 /**
@@ -70,12 +69,6 @@ export default function Answer({data}) {
             {/* Maskable Area */}
           </div>
         </div>
-
-        <MDEditor.Markdown
-          className="select-text"
-          source={data?.answer || data?.tweet}
-        />
-        {/* <div>{data?.answer || data?.tweet}</div> */}
         <div className="flex items-center gap-4 text-sm">
           <div className="flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
             <div className="flex items-center gap-2 hover:text-primary-500">
