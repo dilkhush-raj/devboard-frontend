@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+*::-webkit-scrollbar {
+  width: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: #0d1118;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  background-color: #2b7de6;
+  background-image: linear-gradient(to top, #2b7de6, #5597ea);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #80b0f0, #6ba2ee, #5597ea);
+}
+
 .dark .wmde-markdown pre code {
   filter: hue-rotate(180deg) saturate(200%) invert();
   text-shadow: none !important;
