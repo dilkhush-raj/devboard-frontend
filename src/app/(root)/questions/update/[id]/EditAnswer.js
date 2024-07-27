@@ -4,7 +4,7 @@ import {useState, useRef, useEffect} from "react";
 import axios from "axios";
 import {useRouter} from "next/navigation";
 
-export default function EditBlog({data}) {
+export default function EditAnswer({data}) {
   const [title, setTitle] = useState(data?.title);
   const [content, setContent] = useState(data?.content);
   const [id, setId] = useState(data?._id);

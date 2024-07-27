@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Article from "./Article";
 import {convertToReadableDateTime} from "@/components/function/convertDateTime";
-import {Avatar} from "@nextui-org/react";
+import Avatar from "@/components/ui/Avatar";
 
 async function getData({slug}) {
   const res = await fetch(
@@ -23,7 +23,7 @@ export default async function BlogPage({params}) {
   const date = convertToReadableDateTime(data?.data?.createdAt);
 
   return (
-    <main className="">
+    <main suppressHydrationWarning={true}>
       <div className="relative">
         <picture>
           <img
@@ -40,10 +40,8 @@ export default async function BlogPage({params}) {
           >
             <Avatar
               src={data?.data?.author?.avatar}
-              classNames={{
-                base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                icon: "text-black/80",
-              }}
+              size={40}
+              isBordered={true}
             />
             <div className="flex flex-col justify-center">
               <div className="text-sm">{data?.data?.author?.fullname}</div>
@@ -59,6 +57,7 @@ export default async function BlogPage({params}) {
           id={data?.data?._id}
           type={"Blog"}
           data={data?.data?.content}
+          userId={data?.data?.author?._id}
         />
       </div>
     </main>

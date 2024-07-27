@@ -1,14 +1,11 @@
 "use client";
 import Editor from "@/components/editor/Editor";
-import {useState, useRef, useEffect} from "react";
+import {useState, useRef} from "react";
 import axios from "axios";
-import {useRouter} from "next/navigation";
 
-export default function EditBlog({data}) {
-  const [title, setTitle] = useState(data?.title);
-  const [content, setContent] = useState(data?.content);
-  const [id, setId] = useState(data?._id);
-  const router = useRouter();
+const NewQuestion = () => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const ref = useRef(null);
 
   const handleContentChange = () => {
@@ -21,13 +18,15 @@ export default function EditBlog({data}) {
     e.preventDefault();
 
     const data = {
-      title,
-      content,
+      title: title,
+      content: content,
     };
 
+    console.log(content);
+
     try {
-      const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/update/${id}`,
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/questions/create`,
         data,
         {
           headers: {
@@ -36,7 +35,7 @@ export default function EditBlog({data}) {
           withCredentials: true,
         }
       );
-      router.push(`/blogs/${response?.data?.data?.slug}`);
+      // Handle success (e.g., show a success message, redirect, etc.)
     } catch (error) {
       // Handle error (e.g., show an error message)
     }
@@ -56,7 +55,6 @@ export default function EditBlog({data}) {
         <Editor
           markdown={content}
           editorRef={ref}
-          readOnly={false}
           onChange={handleContentChange}
         />
         <button
@@ -68,4 +66,6 @@ export default function EditBlog({data}) {
       </form>
     </div>
   );
-}
+};
+
+export default NewQuestion;

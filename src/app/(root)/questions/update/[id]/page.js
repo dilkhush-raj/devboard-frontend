@@ -1,4 +1,4 @@
-import EditBlog from "./EditBlog";
+import EditBlog from "./EditAnswer";
 
 async function getData({id}) {
   const res = await fetch(

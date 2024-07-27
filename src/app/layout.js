@@ -1,11 +1,8 @@
 import {DM_Sans} from "next/font/google";
 import "./globals.css";
-import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
 import {ThemeProvider} from "@/context/ThemeProvider";
 import ReactQueryClientProvider from "@/components/ReactQueryClientProvider";
 import {Toaster} from "react-hot-toast";
-import {NextUIProviderWrapper} from "@/context/NextUIProvider";
 import "react-ripple-click/dist/index.css";
 
 const dmSans = DM_Sans({subsets: ["latin"]});
@@ -23,14 +20,12 @@ export default function RootLayout({children}) {
         <body
           className={
             dmSans.className +
-            " select-none dark:bg-darkColor-100 dark:text-lightColor-900"
+            " dark:bg-dark-900 dark:text-light-100 select-none"
           }
         >
           <ThemeProvider>
-            <NextUIProviderWrapper>
-              <Toaster />
-              {children}
-            </NextUIProviderWrapper>
+            <Toaster />
+            {children}
           </ThemeProvider>
         </body>
       </html>

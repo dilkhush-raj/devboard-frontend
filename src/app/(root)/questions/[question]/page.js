@@ -1,4 +1,7 @@
 // @ts-check
+import ConvertToReadableDateTimeUI from "@/components/function/convertDateTime";
+import Save from "@/components/function/handleSave";
+import FetchAnswers from "@/components/questions/fetchAnswers";
 import QuestionCard from "@/components/shared/QuestionCard";
 
 async function getData({question}) {
@@ -15,7 +18,7 @@ export default async function AskQuestion({params}) {
   const data = await getData({question});
 
   return (
-    <div className="p-4">
+    <div className="relative p-4">
       <QuestionCard
         id={data?.data?._id}
         slug={data?.data?.slug}
@@ -23,11 +26,17 @@ export default async function AskQuestion({params}) {
         author_username={data?.data?.author?.username}
         author_profile_img={data?.data?.author?.avatar}
         title={data?.data?.title}
-        published_at={data?.data?.created_at}
+        published_at={ConvertToReadableDateTimeUI(data?.data?.createdAt)}
         content={data?.data?.content}
         comment={[]}
         tags={data?.data?.tags}
       />
+      <div className="absolute right-8 top-6">
+        <Save contentType="Question" id={data?.data?._id} />
+      </div>
+      <div>
+        <FetchAnswers questionId={data?.data?._id} />
+      </div>
     </div>
   );
 }
