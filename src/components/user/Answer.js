@@ -5,13 +5,14 @@ import axios from "axios";
 import {useInView} from "react-intersection-observer";
 import BlogCard from "@/components/shared/BlogCard";
 import {useEffect} from "react";
-import {Spinner} from "@nextui-org/react";
+import {Spinner} from "@nextui-org/spinner";
+import AnswerCard from "../shared/AnswerCard";
 
 export default function UserAnswer({author}) {
   const {ref, inView} = useInView();
 
   const fetchFeed = async ({pageParam}) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/author/${author}?page=${pageParam}&limit=5`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/answers/user/${author}?page=${pageParam}&limit=5`;
     const res = await axios.get(url);
     return res?.data;
   };
@@ -25,7 +26,7 @@ export default function UserAnswer({author}) {
     isFetchingNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ["userBlog", author],
+    queryKey: ["userAnswer", author],
     queryFn: fetchFeed,
     initialPageParam: 1,
     staleTime: 1000 * 60 * 60,
@@ -58,27 +59,23 @@ export default function UserAnswer({author}) {
   if (!data) {
     return <div>No feed found</div>;
   }
+  console.log(data);
 
   return (
     <main className="">
       <div className="flex flex-col gap-4">
         {data?.pages?.map((page) => {
-          return page?.data?.map((post) => (
-            <BlogCard
-              id={post?._id}
+          return page?.answer?.map((post) => (
+            <AnswerCard
               key={post?._id}
+              id={post?._id}
               author={post?.author?.fullname}
-              author_profile_img={post?.author?.avatar}
               author_username={post?.author?.username}
-              comment={[]}
+              author_profile_img={post?.author?.avatar}
+              published_at={ConvertToReadableDateTimeUI(post?.createdAt)}
               content={post?.content}
-              published_at={ConvertToReadableDateTimeUI(post?.created_at)}
-              slug={post?.slug}
-              tags={post?.tags}
-              title={post?.title}
-              dislike={post?.dislike}
-              like={post?.like}
-              banner={post?.banner}
+              upvotes={post?.upvotes}
+              downvotes={post?.downvotes}
             />
           ));
         })}

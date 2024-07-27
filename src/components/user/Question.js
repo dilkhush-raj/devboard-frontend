@@ -4,14 +4,14 @@ import {useInfiniteQuery} from "@tanstack/react-query";
 import axios from "axios";
 import {useInView} from "react-intersection-observer";
 import {useEffect} from "react";
-import {Spinner} from "@nextui-org/react";
+import {Spinner} from "@nextui-org/spinner";
 import QuestionCard from "@/components/shared/QuestionCard";
 
 export default function UserQuestion({author}) {
   const {ref, inView} = useInView();
 
   const fetchFeed = async ({pageParam}) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/questions/author?author=${author}?page=${pageParam}&limit=5`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/questions/author?author=${author}&page=${pageParam}&limit=5`;
     const res = await axios.get(url);
     return res?.data;
   };

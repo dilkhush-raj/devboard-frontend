@@ -5,7 +5,7 @@ import axios from "axios";
 import {useInView} from "react-intersection-observer";
 import BlogCard from "@/components/shared/BlogCard";
 import {useEffect} from "react";
-import {Spinner} from "@nextui-org/react";
+import {Spinner} from "@nextui-org/spinner";
 
 export default function UserBlog({author}) {
   const {ref, inView} = useInView();
