@@ -33,7 +33,7 @@ export default async function RightSidebar() {
   const blogData = await getBlogData();
 
   return (
-    <div className="dark:border-dark-400 fixed bottom-0 right-0 top-[60px] hidden h-[calc(100vh-60px)] w-[300px] overflow-y-auto border-l border-border-100 bg-lightColor-900 p-2 dark:border-darkColor-400 dark:bg-darkColor-200 lg:flex lg:flex-col">
+    <div className="dark:bg-dark-800 fixed bottom-0 right-0 top-[60px] hidden h-[calc(100vh-60px)] w-[300px] overflow-y-auto border-l border-border-100 bg-lightColor-900 p-2 dark:border-darkColor-400 lg:flex lg:flex-col">
       <h2 className="text-lg font-semibold text-primary-400">
         Popular Articles
       </h2>
@@ -44,7 +44,7 @@ export default async function RightSidebar() {
             href={`/blogs/${blog?.slug}`}
             className="flex gap-2 border-b border-border-100 pb-2 dark:border-darkColor-400"
           >
-            <div className="underlineborder break-words rounded-lg p-2 text-sm font-medium shadow-sm">
+            <div className="underlineborder break-words rounded-lg p-2 text-sm font-medium">
               {blog?.title}
             </div>
           </Link>

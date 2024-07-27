@@ -42,7 +42,7 @@ export const navLinks = [
   {slug: "/blogs", label: "Blogs", icon: <PiNewspaperClippingFill />},
   {
     slug: "/questions",
-    label: "Ask Question",
+    label: "Questions",
     icon: <BsFillPatchQuestionFill />,
   },
   {slug: "/tags", label: "Tags", icon: <IoMdPricetags />},
