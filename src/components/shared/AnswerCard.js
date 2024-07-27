@@ -1,100 +1,123 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import {PiArrowFatUpFill, PiArrowFatDownFill} from "react-icons/pi";
-import {HiOutlineDotsVertical} from "react-icons/hi";
-import {FaCommentAlt} from "react-icons/fa";
+import axios from "axios";
 import {useState} from "react";
-import ShareButtons from "../ui/ShareButton";
+import {toast} from "react-hot-toast";
+import useUserStore from "@/stores/useUserStore";
+import Editor from "../editor/Editor";
+import {HiOutlineDotsVertical} from "react-icons/hi";
+import {RiDeleteBin6Fill} from "react-icons/ri";
+import {FaKeyboard} from "react-icons/fa";
 
-/**
- * Answer component to display an answer card with author details, upvote/downvote functionality, comments, and sharing options.
- *
- * @component
- * @param {Object} props - Component properties.
- * @param {Object} props.data - Data required for rendering the answer.
- * @param {string} props.data.author - Name of the answer's author.
- * @param {string} props.data.author_username - Username of the answer's author.
- * @param {string} props.data.author_profile_img - Profile image URL of the author.
- * @param {string} props.data.answer - The answer text in markdown format.
- * @param {string} props.data.tweet - The tweet text in markdown format.
- * @param {number} [props.data.upvote=0] - Number of upvotes.
- * @param {number} [props.data.downvote=0] - Number of downvotes.
- * @param {number} [props.data.id] - Unique identifier for the answer.
- * @returns {JSX.Element} Rendered Answer component.
- */
-
-export default function Answer({data}) {
+export default function AnswerCard({
+  id,
+  published_at,
+  author,
+  authorId,
+  author_username,
+  content,
+  onDelete,
+  onUpvote,
+  onDownvote,
+  onUpdateClick, // Add this new prop
+  upvotes: initialUpvotes,
+  downvotes: initialDownvotes,
+}) {
+  const [upvotes, setUpvotes] = useState(initialUpvotes);
+  const [downvotes, setDownvotes] = useState(initialDownvotes);
   const [open, setOpen] = useState(false);
+  const userid = useUserStore((state) => state.user._id);
 
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/answers/delete/${id}`,
+        {withCredentials: true}
+      );
+      setOpen(false);
+      onDelete(id);
+    } catch (error) {
+      toast.error(error.response.data.message || "Failed to delete");
+    }
+  };
+
+  const hasUpvoted = upvotes?.includes(userid);
+  const hasDownvoted = downvotes?.includes(userid);
+  const userStore = useUserStore((state) => state);
+
+  const handleUpdate = () => {
+    onUpdateClick(id, content);
+    setOpen(false);
+  };
   return (
-    <div className="relative rounded-lg bg-white p-4 shadow-sm dark:bg-darkColor-300">
+    <div className="relative rounded-lg border border-border-100 bg-white p-4 shadow-sm dark:border-darkColor-400 dark:bg-dark-800">
       <div className="flex flex-col gap-4">
-        <div>
-          <div className="flex items-center justify-between">
-            <Link
-              href={`/user/${data?.author_username}`}
-              className="flex items-center gap-2"
+        <Editor markdown={content} editorRef={null} readOnly={true} />
+
+        <div className="flex items-center justify-between gap-4 text-sm">
+          <div className="flex w-max items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
+            <div
+              className={`flex cursor-pointer items-center gap-2 ${hasUpvoted ? "text-primary-500" : "hover:text-primary-500"}`}
+              onClick={() => onUpvote(id)}
             >
-              <Image
-                src={data?.author_profile_img || "/avatar.jpg"}
-                width={40}
-                height={40}
-                className="rounded-full"
-                alt={data?.author}
-              />
-              <div className="flex flex-col justify-center">
-                <div className="text-sm">{data?.author}</div>
-                <div className="text-xs">{data?.author_username}</div>
-              </div>
-            </Link>
-            <div className="pr-2 text-lg" onClick={() => setOpen(!open)}>
-              <HiOutlineDotsVertical />
-            </div>
-          </div>
-          <div
-            className={`${
-              open ? "visible" : "hidden"
-            } absolute right-8 top-2 z-50 min-w-40 rounded-lg bg-lightColor-850 p-4 shadow-md dark:bg-darkColor-400`}
-          >
-            <div>Save</div>
-            <div>Report</div>
-          </div>
-          <div
-            onClick={() => setOpen(!open)}
-            className={`${
-              open ? "visible" : "hidden"
-            } fixed inset-0 z-40 bg-[#00000064]`}
-          >
-            {/* Maskable Area */}
-          </div>
-        </div>
-        <div className="flex items-center gap-4 text-sm">
-          <div className="flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
-            <div className="flex items-center gap-2 hover:text-primary-500">
               <PiArrowFatUpFill />
-              {data?.upvote || 0}
+              {upvotes?.length}
             </div>
-            <div className="flex items-center gap-2 hover:text-red-600">
+            <div
+              className={`flex cursor-pointer items-center gap-2 ${hasDownvoted ? "text-red-600" : "hover:text-red-600"}`}
+              onClick={() => onDownvote(id)}
+            >
               <PiArrowFatDownFill />
-              {data?.downvote || 0}
+              {downvotes?.length}
             </div>
           </div>
-          <div className="flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 hover:text-cyan-600 dark:bg-darkColor-400">
-            <div className="flex items-center gap-2">
-              <FaCommentAlt />
-              <div>32</div>
-            </div>
-          </div>
-          <div className="relative flex w-max cursor-pointer items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
-            <ShareButtons
-              title={"DevBoard"}
-              url={"https://dev-board-ten.vercel.app/"}
-              key={data?.id}
-            />
+          <div className="flex flex-wrap items-center gap-2 text-sm">
+            <span>{published_at},</span> answered by
+            <Link href={`/@${author_username}`} className="text-primary-500">
+              {author}
+            </Link>
           </div>
         </div>
       </div>
+      {userStore?.isAuth && userStore?.user?._id === authorId && (
+        <div className="absolute right-2 top-2">
+          <>
+            <button
+              className="z-10 rounded-full p-2"
+              onClick={() => setOpen(!open)}
+            >
+              <HiOutlineDotsVertical />
+            </button>
+            <div
+              className={`${
+                open ? "visible" : "hidden"
+              } absolute right-6 top-0 z-20 flex min-w-40 flex-col gap-4 rounded-lg bg-lightColor-850 p-4 shadow-md dark:bg-dark-600`}
+            >
+              <button
+                className={`flex cursor-pointer items-center gap-2 rounded-lg hover:text-primary-500`}
+                onClick={handleUpdate}
+              >
+                <FaKeyboard />
+                Update
+              </button>
+              <button
+                className={`flex cursor-pointer items-center gap-2 rounded-lg hover:text-red-600`}
+                onClick={handleDelete}
+              >
+                <RiDeleteBin6Fill />
+                Delete
+              </button>
+            </div>
+            <div
+              onClick={() => setOpen(!open)}
+              className={`${open ? "visible" : "hidden"} fixed inset-0 z-10`}
+            >
+              {/* Maskable Area */}
+            </div>
+          </>
+        </div>
+      )}
     </div>
   );
 }
