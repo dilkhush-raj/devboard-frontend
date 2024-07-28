@@ -1,13 +1,9 @@
 import {DM_Sans} from "next/font/google";
 import "./globals.css";
-import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
 import {ThemeProvider} from "@/context/ThemeProvider";
 import ReactQueryClientProvider from "@/components/ReactQueryClientProvider";
 import {Toaster} from "react-hot-toast";
-import {NextUIProviderWrapper} from "@/context/NextUIProvider";
 import "react-ripple-click/dist/index.css";
-
 const dmSans = DM_Sans({subsets: ["latin"]});
 
 export const metadata = {
@@ -18,22 +14,19 @@ export const metadata = {
 
 export default function RootLayout({children}) {
   return (
-    <ReactQueryClientProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body
-          className={
-            dmSans.className +
-            " select-none dark:bg-darkColor-100 dark:text-lightColor-900"
-          }
-        >
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={
+          dmSans.className + " select-none dark:bg-dark-900 dark:text-light-100"
+        }
+      >
+        <ReactQueryClientProvider>
           <ThemeProvider>
-            <NextUIProviderWrapper>
-              <Toaster />
-              {children}
-            </NextUIProviderWrapper>
+            <Toaster />
+            {children}
           </ThemeProvider>
-        </body>
-      </html>
-    </ReactQueryClientProvider>
+        </ReactQueryClientProvider>
+      </body>
+    </html>
   );
 }

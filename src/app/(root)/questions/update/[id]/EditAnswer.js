@@ -1,14 +1,15 @@
 "use client";
 import Editor from "@/components/editor/Editor";
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import axios from "axios";
 import {useRouter} from "next/navigation";
 
-const NewBlog = () => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const ref = useRef(null);
+export default function EditAnswer({data}) {
+  const [title, setTitle] = useState(data?.title);
+  const [content, setContent] = useState(data?.content);
+  const [id, setId] = useState(data?._id);
   const router = useRouter();
+  const ref = useRef(null);
 
   const handleContentChange = () => {
     if (ref.current) {
@@ -20,15 +21,13 @@ const NewBlog = () => {
     e.preventDefault();
 
     const data = {
-      title: title,
-      content: content,
+      title,
+      content,
     };
 
-    console.log(content);
-
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/create`,
+      const response = await axios.put(
+        `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/update/${id}`,
         data,
         {
           headers: {
@@ -37,7 +36,7 @@ const NewBlog = () => {
           withCredentials: true,
         }
       );
-      router.push(`/blogs/${res?.data?.data?.slug}`);
+      router.push(`/blogs/${response?.data?.data?.slug}`);
     } catch (error) {
       // Handle error (e.g., show an error message)
     }
@@ -57,17 +56,16 @@ const NewBlog = () => {
         <Editor
           markdown={content}
           editorRef={ref}
+          readOnly={false}
           onChange={handleContentChange}
         />
         <button
           type="submit"
-          className="mt-4 rounded-lg bg-blue-500 p-3 text-white"
+          className="bg-blue-500 mt-4 rounded-lg p-3 text-white"
         >
           Submit
         </button>
       </form>
     </div>
   );
-};
-
-export default NewBlog;
+}

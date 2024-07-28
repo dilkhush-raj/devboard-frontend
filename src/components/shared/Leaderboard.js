@@ -1,5 +1,5 @@
 "use client";
-import {Avatar} from "@nextui-org/react";
+import Avatar from "../ui/Avatar";
 import Link from "next/link";
 import {useEffect, useRef, useState} from "react";
 import confetti from "canvas-confetti";
@@ -78,7 +78,7 @@ export default function Leaderboard({data}) {
   return (
     <main ref={ref} className="relative">
       <div className="mb-4 overflow-hidden">
-        <div className="relative flex items-end justify-center border-b border-border-100 bg-gradient-to-tr from-[#b5c6e0] to-[#ebf4f5] px-2 pt-[200px] dark:border-darkColor-400 dark:from-[#000000] dark:to-[#130F40]">
+        <div className="relative flex items-end justify-center border-b border-border-100 bg-gradient-to-tr from-[#f5f5f5] to-[#EEEEFF] px-2 pt-[200px] dark:border-darkColor-400 dark:from-[#000000] dark:to-[#130F40]">
           <button
             onClick={handleConfetti}
             className="absolute bottom-5 left-5 z-10 text-xl"
@@ -101,16 +101,13 @@ export default function Leaderboard({data}) {
                 <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
                   <Avatar
                     src={topThreeUsers[1].avatar}
-                    isBordered
-                    classNames={{
-                      base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                      icon: "text-black/80",
-                    }}
+                    size={40}
+                    isBordered={true}
                   />
                   <div>{topThreeUsers[1].fullname}</div>
                   <div className="text-xs">@{topThreeUsers[1].username}</div>
                 </div>
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center text-white">
                   <img
                     src="/badges/Silver.svg"
                     className="aspect-square w-20 object-contain"
@@ -136,16 +133,13 @@ export default function Leaderboard({data}) {
                 <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
                   <Avatar
                     src={topThreeUsers[0].avatar}
-                    isBordered
-                    classNames={{
-                      base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                      icon: "text-black/80",
-                    }}
+                    size={40}
+                    isBordered={true}
                   />
                   <div>{topThreeUsers[0].fullname}</div>
                   <div className="text-xs">@{topThreeUsers[0].username}</div>
                 </div>
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center text-white">
                   <img
                     src="/badges/Champion.svg"
                     className="aspect-square w-20 object-contain"
@@ -171,16 +165,13 @@ export default function Leaderboard({data}) {
                 <div className="absolute top-[-100px] flex flex-col items-center justify-center gap-1">
                   <Avatar
                     src={topThreeUsers[2].avatar}
-                    isBordered
-                    classNames={{
-                      base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                      icon: "text-black/80",
-                    }}
+                    size={40}
+                    isBordered={true}
                   />
                   <div>{topThreeUsers[2].fullname}</div>
                   <div className="text-xs">@{topThreeUsers[2].username}</div>
                 </div>
-                <div className="flex flex-col items-center justify-center">
+                <div className="flex flex-col items-center justify-center text-white">
                   <img
                     src="/badges/Gold.svg"
                     className="aspect-square w-20 object-contain"
@@ -204,16 +195,8 @@ export default function Leaderboard({data}) {
               href={`/@${user.username}`}
               className="flex w-[180px] items-center gap-4"
             >
-              <picture className="aspect-square w-10 overflow-hidden rounded-full object-contain">
-                <source srcSet={user.avatar} type="image/webp" />
-                <Avatar
-                  src={user.avatar}
-                  classNames={{
-                    base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                    icon: "text-black/80",
-                  }}
-                />
-              </picture>
+              <Avatar src={user.avatar} size={40} isBordered={true} />
+
               <div className="flex flex-col">
                 <div>{user.fullname}</div>
                 <div className="text-xs text-darkColor-150 dark:text-zinc-400">

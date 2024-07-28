@@ -23,7 +23,7 @@ export default async function TagsPage() {
         <Link
           href={`/?tags=${tag?.name}`}
           key={tag?._id}
-          className="flex flex-col gap-2 rounded-lg border border-transparent bg-white p-4 shadow-sm dark:border-darkColor-400 dark:bg-darkColor-200"
+          className="dark:bg-dark-800 flex flex-col gap-2 rounded-lg border border-border-100 bg-white p-4 shadow-sm dark:border-darkColor-400"
         >
           <Tag>{tag?.name}</Tag>
           <p className="text-lightColor-300 text-sm dark:text-lightColor-600">

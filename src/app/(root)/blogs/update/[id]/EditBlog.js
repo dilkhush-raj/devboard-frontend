@@ -7,6 +7,7 @@ import {useRouter} from "next/navigation";
 export default function EditBlog({data}) {
   const [title, setTitle] = useState(data?.title);
   const [content, setContent] = useState(data?.content);
+  const [id, setId] = useState(data?._id);
   const router = useRouter();
   const ref = useRef(null);
 
@@ -35,6 +36,7 @@ export default function EditBlog({data}) {
           withCredentials: true,
         }
       );
+      router.push(`/blogs/${response?.data?.data?.slug}`);
     } catch (error) {
       // Handle error (e.g., show an error message)
     }
@@ -59,7 +61,7 @@ export default function EditBlog({data}) {
         />
         <button
           type="submit"
-          className="bg-blue-500 mt-4 rounded-lg p-3 text-white"
+          className="mt-4 rounded-lg bg-blue-500 p-3 text-white"
         >
           Submit
         </button>

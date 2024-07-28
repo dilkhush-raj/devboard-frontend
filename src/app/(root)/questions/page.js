@@ -5,7 +5,7 @@ import axios from "axios";
 import {useInView} from "react-intersection-observer";
 import {useEffect} from "react";
 import QuestionCard from "@/components/shared/QuestionCard";
-import {Spinner} from "@nextui-org/react";
+import {Spinner} from "@nextui-org/spinner";
 
 const page = () => {
   const {ref, inView} = useInView();

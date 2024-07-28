@@ -1,20 +1,9 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
-import {PiArrowFatUpFill, PiArrowFatDownFill} from "react-icons/pi";
-import {FaCommentAlt} from "react-icons/fa";
-import MDEditor from "@uiw/react-md-editor";
-import ShareButtons from "../ui/ShareButton";
-import CardMenu from "../ui/CardMenu";
-import {FaCalendarAlt} from "react-icons/fa";
 import {Button} from "../ui/button";
-import {Avatar} from "@nextui-org/react";
-import {IoBookmark, IoBookmarkOutline} from "react-icons/io5";
-import Tag from "../ui/Tag";
-import Editor from "../editor/Editor";
-
+import Avatar from "../ui/Avatar";
 import {useTheme} from "next-themes";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {markdownToPlainText} from "../function/markdownToPlainText";
 /**
  * BlogCard component to display a blog card with author details, like/dislike functionality, comments, and sharing options.
@@ -56,7 +45,7 @@ export default function BlogCard({
   saved = false,
 }) {
   // content to show 100 characters
-  const contentToShow = content?.toString().slice(0, 200);
+  const contentToShow = content?.toString().slice(0, 150);
 
   const {theme, setTheme} = useTheme();
   const [isMounted, setIsMounted] = useState(false);
@@ -92,7 +81,7 @@ export default function BlogCard({
               </Link>
             </div>
             {plainText}
-            {content.length > 200 ? "..." : ""}
+            {content.length > 150 ? "..." : ""}
 
             <div>
               {tags.slice(0, 3).map((tag) => (
@@ -111,13 +100,7 @@ export default function BlogCard({
               href={`/@${author_username}`}
               className="flex items-center gap-2"
             >
-              <Avatar
-                src={author_profile_img}
-                classNames={{
-                  base: "bg-gradient-to-br from-[#2563EB] to-[#2196F3]",
-                  icon: "text-black/80",
-                }}
-              />
+              <Avatar src={author_profile_img} size={40} isBordered={true} />
               <div className="flex flex-col justify-center">
                 <div className="text-sm">{author}</div>
                 <div className="text-xs text-primary-400">

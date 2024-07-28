@@ -4,7 +4,7 @@ import {useState, useRef} from "react";
 import axios from "axios";
 import {useRouter} from "next/navigation";
 
-const NewBlog = () => {
+const NewQuestion = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const ref = useRef(null);
@@ -22,13 +22,14 @@ const NewBlog = () => {
     const data = {
       title: title,
       content: content,
+      tags: [],
     };
 
-    console.log(content);
+    console.log(data);
 
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/create`,
+        `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/questions/create`,
         data,
         {
           headers: {
@@ -37,9 +38,10 @@ const NewBlog = () => {
           withCredentials: true,
         }
       );
-      router.push(`/blogs/${res?.data?.data?.slug}`);
+      console.log(res);
+      router.push(`/questions/${res.data.data.slug}`);
     } catch (error) {
-      // Handle error (e.g., show an error message)
+      alert("Failed to create question");
     }
   };
 
@@ -70,4 +72,4 @@ const NewBlog = () => {
   );
 };
 
-export default NewBlog;
+export default NewQuestion;

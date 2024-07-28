@@ -1,9 +1,20 @@
 "use client";
-import Editor from "@/components/editor/Editor";
+import useUserStore from "@/stores/useUserStore";
 import axios from "axios";
+import Link from "next/link";
 import {IoBookmarkOutline} from "react-icons/io5";
+import {IoMdArrowBack} from "react-icons/io";
+import {useRouter} from "next/navigation";
+import Editor from "@/components/editor/EditorComponent";
+import {FaPen} from "react-icons/fa";
+import {RiDeleteBin6Fill} from "react-icons/ri";
+import deleteBlog from "@/components/function/deleteBlog";
 
-export default function Article({data, id, type}) {
+export default function Article({data, id, type, userId}) {
+  const authUser = useUserStore((state) => state);
+  const isAuth = authUser?.isAuth;
+
+  const router = useRouter();
   const handleSave = async ({contentType, id}) => {
     // Validate input
     if (!contentType || !id) {
@@ -60,16 +71,43 @@ export default function Article({data, id, type}) {
   };
 
   return (
-    <>
+    <div>
       <button
-        className="absolute right-5 top-10 rounded-full bg-black p-4 text-white"
-        onClick={() => handleSave({contentType: type, id: id})}
+        onClick={() => router.back()}
+        className="absolute left-2 top-2 flex items-center justify-center gap-3 rounded-full bg-black p-2 text-xl text-white"
       >
-        <IoBookmarkOutline />
+        <IoMdArrowBack />
       </button>
+      {isAuth && (
+        <button
+          className="absolute right-2 top-2 aspect-square rounded-full bg-black p-3 text-white"
+          onClick={() => handleSave({contentType: type, id: id})}
+        >
+          <IoBookmarkOutline />
+        </button>
+      )}
+      {userId === authUser?.user?._id && (
+        <Link
+          href={`/blogs/update/${id}`}
+          className="absolute right-2 top-14 aspect-square rounded-full bg-black p-3 text-white"
+        >
+          <FaPen />
+        </Link>
+      )}
+      {userId === authUser?.user?._id && (
+        <button
+          onClick={() => {
+            deleteBlog(id);
+            router.back();
+          }}
+          className="absolute right-2 top-28 aspect-square rounded-full bg-black p-3 text-white"
+        >
+          <RiDeleteBin6Fill />
+        </button>
+      )}
       <article className="prose p-4 text-justify">
         <Editor markdown={data} readOnly={true} />
       </article>
-    </>
+    </div>
   );
 }

@@ -1,5 +1,3 @@
-import {nextui} from "@nextui-org/react";
-
 // const {
 //   default: flattenColorPalette,
 // } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -29,30 +27,42 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "Accent-sky": "#E3F2FD",
-        blue: "#2563EB",
-        "shadow-100": "#0F1117",
-        "shadow-200": "#151821",
-        "shadow-300": "#212734",
-        "shadow-400": "#21273",
-        "shadow-500": "#3F4354",
-        white: "#FFFFFF",
-        "lite-850": "#FDFDFD",
-        "lite-800": "#F4F6F8",
-        "lite-700": "#DCE3F1",
-        "lite-500": "#7B8EC8",
-        "lite-400": "#858EAD",
         primary: {
-          500: "#2563EB",
-          400: "#2196F3",
+          100: "#80B0F0",
+          200: "#6BA2EE",
+          300: "#5597EA",
+          400: "#4089E8",
+          500: "#2B7DE6",
+        },
+        dark: {
+          100: "#3A4E66",
+          200: "#33435A",
+          300: "#2D3B50",
+          400: "#253243",
+          500: "#202B39",
+          600: "#1B212D",
+          700: "#121A22",
+          800: "#0D1118",
+          900: "#07090B",
+        },
+        light: {
+          100: "#F4F8FF",
+          200: "#E9F2FC",
+          300: "#DFEAFC",
+          400: "#D5E4FA",
+          500: "#C9DFFA",
+          600: "#BFD9F7",
+          700: "#B6D1F6",
+          800: "#ABCBF6",
+          900: "#A0C4F4",
         },
         darkColor: {
           100: "#000000",
-          150: "#0F1014",
-          200: "#0F1116",
-          300: "#13151A",
-          400: "#212734",
-          500: "#101012",
+          150: "#07090B",
+          200: "#07090B",
+          300: "#0D1118",
+          400: "#121A22",
+          500: "#1B212D",
         },
         lightColor: {
           900: "#FFFFFF",
@@ -69,10 +79,6 @@ module.exports = {
         },
       },
       backgroundImage: {
-        "blue-600-to-sky-500": "linear-gradient(145deg, #2563EB, #2196F3)",
-        "gray-900-to-Zing-900": "linear-gradient(232deg, #171c2369, #13161cb3)",
-        "gray-900-to-Zing-9001":
-          "linear-gradient(232deg, #171c2336, #13161c80)",
         "gradient-primary": "linear-gradient(to right, #2563EB, #2196F3)",
       },
       screens: {
@@ -139,7 +145,6 @@ module.exports = {
     },
   },
   plugins: [
-    nextui(),
     addVariablesForColors,
     function ({addUtilities}) {
       addUtilities({

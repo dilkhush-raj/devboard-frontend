@@ -38,30 +38,53 @@ export default function NavbarAvatar({imgSrc}) {
             </button>
 
             {open && (
-              <div className="fixed right-2 top-[68px] z-10 flex w-max min-w-[300px] flex-col overflow-hidden rounded-lg border border-border-100 bg-darkColor-300 text-base dark:border-darkColor-400">
-                <div className="flex items-center justify-between gap-4 p-4 pb-0">
+              <div className="fixed right-2 top-[68px] z-10 flex w-max min-w-[300px] flex-col overflow-hidden rounded-lg border border-border-100 bg-lightColor-850 text-base dark:border-darkColor-400 dark:bg-darkColor-300">
+                <div className="flex items-center justify-between gap-2 p-4 pb-0">
                   <Link
                     href={`/@${user?.username}`}
                     onClick={() => setOpen(false)}
-                    className="text-sm"
+                    className="underline-offset-4 hover:underline"
                   >
                     My Profile
                   </Link>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
-                <d className="flex flex-col items-center gap-2 p-10 pt-5">
-                  <Avatar src={user?.avatar} size={100} isBordered={true} />
-                  <div className="whitespace-nowrap text-xl font-bold">
-                    {user?.fullname}
-                  </div>
-                  <Link
-                    href={`/@${user?.username}`}
-                    onClick={() => setOpen(false)}
-                    className="text-sm"
+                  <button
+                    onClick={handleLogout}
+                    className="underline-offset-4 hover:underline"
                   >
-                    @{user?.username}
+                    Logout
+                  </button>
+                </div>
+                <div className="flex flex-col items-center gap-2 p-10 py-4">
+                  <Avatar src={user?.avatar} size={100} isBordered={true} />
+                  <div className="text-center">
+                    <div className="whitespace-nowrap text-xl font-bold">
+                      {user?.fullname}
+                    </div>
+                    <Link
+                      href={`/@${user?.username}`}
+                      onClick={() => setOpen(false)}
+                      className="text-sm text-primary-400 underline-offset-4 hover:underline"
+                    >
+                      @{user?.username}
+                    </Link>
+                  </div>
+                </div>
+                <div className="mb-4 flex items-center justify-center gap-4 text-sm">
+                  <Link
+                    onClick={() => setOpen(false)}
+                    href={"/blogs/new"}
+                    className="underline-offset-4 hover:underline"
+                  >
+                    Write an article
                   </Link>
-                </d>
+                  <Link
+                    onClick={() => setOpen(false)}
+                    href={"/questions/new"}
+                    className="underline-offset-4 hover:underline"
+                  >
+                    Ask a question
+                  </Link>
+                </div>
                 <div className="flex items-center gap-2 p-10 pt-0">
                   {user?.interests?.map((interest) => (
                     <Link
