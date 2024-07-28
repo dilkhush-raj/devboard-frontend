@@ -5,6 +5,7 @@ import axios from "axios";
 import {IoEye, IoEyeOff} from "react-icons/io5";
 import Logo from "@/assets/logo";
 import Link from "next/link";
+import debounce from "lodash.debounce";
 import {toast} from "react-hot-toast";
 import {useRouter} from "next/navigation";
 
@@ -23,7 +24,7 @@ export default function SignupForm() {
 
   const onSubmit = async (data) => {
     try {
-      toast.loading("Registering...");
+      // toast.loading("Registering...");
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/users/register`,
         {
@@ -59,11 +60,12 @@ export default function SignupForm() {
     }
   };
 
-  const debouncedCheckUsernameAvailability = useCallback();
-  // debounce((username) => {
-  //   checkUsernameAvailability(username);
-  // }, 500),
-  // []
+  const debouncedCheckUsernameAvailability = useCallback(
+    debounce((username) => {
+      checkUsernameAvailability(username);
+    }, 500),
+    []
+  );
 
   const username = watch("username");
 
