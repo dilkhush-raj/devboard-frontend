@@ -14,9 +14,9 @@ function convertToReadableDateTime(isoDateString) {
   } else if (diffInHours < 24) {
     return `${diffInHours} hours ago`;
   } else if (diffInDays < 1) {
-    return "today";
+    return "Today";
   } else if (diffInDays < 2) {
-    return "yesterday";
+    return "Yesterday";
   } else {
     const dateOptions = {day: "numeric", month: "long", year: "numeric"};
     return date.toLocaleDateString("en-IN", dateOptions);

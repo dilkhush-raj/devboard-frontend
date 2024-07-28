@@ -11,7 +11,7 @@ export default function UserQuestion({author}) {
   const {ref, inView} = useInView();
 
   const fetchFeed = async ({pageParam}) => {
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/questions/author?author=${author}&page=${pageParam}&limit=5`;
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/questions/author?author=${author}&page=${pageParam}&limit=2`;
     const res = await axios.get(url);
     return res?.data;
   };
@@ -30,8 +30,8 @@ export default function UserQuestion({author}) {
     initialPageParam: 1,
     staleTime: 1000 * 60 * 60,
     getNextPageParam: (lastPage) => {
-      if (lastPage.currentPage < lastPage.totalPages) {
-        return lastPage.currentPage + 1;
+      if (lastPage.data.currentPage < lastPage.data.totalPages) {
+        return lastPage.data.currentPage + 1;
       }
       return undefined;
     },
@@ -63,7 +63,7 @@ export default function UserQuestion({author}) {
     <main className="">
       <div className="flex flex-col gap-4">
         {data?.pages?.map((page) => {
-          return page?.data?.map((post) => (
+          return page?.data?.questions?.map((post) => (
             <QuestionCard
               id={post?._id}
               key={post?._id}

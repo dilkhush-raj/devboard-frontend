@@ -59,7 +59,6 @@ export default function UserAnswer({author}) {
   if (!data) {
     return <div>No feed found</div>;
   }
-  console.log(data);
 
   return (
     <main className="">

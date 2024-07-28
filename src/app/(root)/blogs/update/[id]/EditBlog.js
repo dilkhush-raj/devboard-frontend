@@ -61,7 +61,7 @@ export default function EditBlog({data}) {
         />
         <button
           type="submit"
-          className="bg-blue-500 mt-4 rounded-lg p-3 text-white"
+          className="mt-4 rounded-lg bg-blue-500 p-3 text-white"
         >
           Submit
         </button>

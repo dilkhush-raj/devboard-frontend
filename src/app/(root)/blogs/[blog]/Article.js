@@ -6,6 +6,9 @@ import {IoBookmarkOutline} from "react-icons/io5";
 import {IoMdArrowBack} from "react-icons/io";
 import {useRouter} from "next/navigation";
 import Editor from "@/components/editor/EditorComponent";
+import {FaPen} from "react-icons/fa";
+import {RiDeleteBin6Fill} from "react-icons/ri";
+import deleteBlog from "@/components/function/deleteBlog";
 
 export default function Article({data, id, type, userId}) {
   const authUser = useUserStore((state) => state);
@@ -71,9 +74,9 @@ export default function Article({data, id, type, userId}) {
     <div>
       <button
         onClick={() => router.back()}
-        className="absolute left-4 top-4 flex items-center justify-center gap-3 text-xl text-black"
+        className="absolute left-2 top-2 flex items-center justify-center gap-3 rounded-full bg-black p-2 text-xl text-white"
       >
-        <IoMdArrowBack /> Go back
+        <IoMdArrowBack />
       </button>
       {isAuth && (
         <button
@@ -86,10 +89,21 @@ export default function Article({data, id, type, userId}) {
       {userId === authUser?.user?._id && (
         <Link
           href={`/blogs/update/${id}`}
-          className="absolute left-4 top-14 text-black"
+          className="absolute right-2 top-14 aspect-square rounded-full bg-black p-3 text-white"
         >
-          Update
+          <FaPen />
         </Link>
+      )}
+      {userId === authUser?.user?._id && (
+        <button
+          onClick={() => {
+            deleteBlog(id);
+            router.back();
+          }}
+          className="absolute right-2 top-28 aspect-square rounded-full bg-black p-3 text-white"
+        >
+          <RiDeleteBin6Fill />
+        </button>
       )}
       <article className="prose p-4 text-justify">
         <Editor markdown={data} readOnly={true} />

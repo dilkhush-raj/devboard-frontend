@@ -2,7 +2,8 @@ import EditBlog from "./EditBlog";
 
 async function getData({id}) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/blog/${id}`
+    `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/blog/${id}`,
+    {cache: "no-store"}
   );
 
   if (!res.ok) {

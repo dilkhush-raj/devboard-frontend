@@ -2,11 +2,13 @@
 import Editor from "@/components/editor/Editor";
 import {useState, useRef} from "react";
 import axios from "axios";
+import {useRouter} from "next/navigation";
 
 const NewQuestion = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const ref = useRef(null);
+  const router = useRouter();
 
   const handleContentChange = () => {
     if (ref.current) {
@@ -20,12 +22,13 @@ const NewQuestion = () => {
     const data = {
       title: title,
       content: content,
+      tags: [],
     };
 
-    console.log(content);
+    console.log(data);
 
     try {
-      await axios.post(
+      const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/questions/create`,
         data,
         {
@@ -35,9 +38,10 @@ const NewQuestion = () => {
           withCredentials: true,
         }
       );
-      // Handle success (e.g., show a success message, redirect, etc.)
+      console.log(res);
+      router.push(`/questions/${res.data.data.slug}`);
     } catch (error) {
-      // Handle error (e.g., show an error message)
+      alert("Failed to create question");
     }
   };
 
@@ -59,7 +63,7 @@ const NewQuestion = () => {
         />
         <button
           type="submit"
-          className="bg-blue-500 mt-4 rounded-lg p-3 text-white"
+          className="mt-4 rounded-lg bg-blue-500 p-3 text-white"
         >
           Submit
         </button>

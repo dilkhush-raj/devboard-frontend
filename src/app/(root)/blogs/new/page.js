@@ -2,11 +2,13 @@
 import Editor from "@/components/editor/Editor";
 import {useState, useRef} from "react";
 import axios from "axios";
+import {useRouter} from "next/navigation";
 
 const NewBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const ref = useRef(null);
+  const router = useRouter();
 
   const handleContentChange = () => {
     if (ref.current) {
@@ -25,7 +27,7 @@ const NewBlog = () => {
     console.log(content);
 
     try {
-      await axios.post(
+      const res = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_SERVER_BASE_URL}/api/v1/blogs/create`,
         data,
         {
@@ -35,7 +37,7 @@ const NewBlog = () => {
           withCredentials: true,
         }
       );
-      // Handle success (e.g., show a success message, redirect, etc.)
+      router.push(`/blogs/${res?.data?.data?.slug}`);
     } catch (error) {
       // Handle error (e.g., show an error message)
     }
@@ -59,7 +61,7 @@ const NewBlog = () => {
         />
         <button
           type="submit"
-          className="bg-blue-500 mt-4 rounded-lg p-3 text-white"
+          className="mt-4 rounded-lg bg-blue-500 p-3 text-white"
         >
           Submit
         </button>

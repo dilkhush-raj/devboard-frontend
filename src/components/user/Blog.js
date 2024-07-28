@@ -30,8 +30,8 @@ export default function UserBlog({author}) {
     initialPageParam: 1,
     staleTime: 1000 * 60 * 60,
     getNextPageParam: (lastPage) => {
-      if (lastPage.currentPage < lastPage.totalPages) {
-        return lastPage.currentPage + 1;
+      if (lastPage.data.currentPage < lastPage.data.totalPages) {
+        return lastPage.data.currentPage + 1;
       }
       return undefined;
     },
@@ -63,7 +63,7 @@ export default function UserBlog({author}) {
     <main className="">
       <div className="flex flex-col gap-4">
         {data?.pages?.map((page) => {
-          return page?.data?.map((post) => (
+          return page?.data.blog?.map((post) => (
             <BlogCard
               id={post?._id}
               key={post?._id}
@@ -88,7 +88,9 @@ export default function UserBlog({author}) {
             Loading...
           </div>
         ) : (
-          <div className="text-center">No more posts</div>
+          <div className="text-center">
+            {hasNextPage ? "" : "No more posts"}
+          </div>
         )}
         <div ref={ref} className="min-h-10"></div>
       </div>

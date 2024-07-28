@@ -52,7 +52,7 @@ const useUserStore = create(
     (set) => ({
       auth: {...initialState},
       setUser: (newUser) => set({user: newUser, isAuth: true}),
-      resetUser: () => set({user: {...initialState}}),
+      resetUser: () => set({isAuth: false, user: {...initialState}}),
       setUserProperty: (property, value) =>
         set((state) => ({
           user: {...state.user, [property]: value},

@@ -79,7 +79,7 @@ export default function NavbarAvatar({imgSrc}) {
                   </Link>
                   <Link
                     onClick={() => setOpen(false)}
-                    href={"/ask-question/new"}
+                    href={"/questions/new"}
                     className="underline-offset-4 hover:underline"
                   >
                     Ask a question

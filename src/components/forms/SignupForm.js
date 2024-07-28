@@ -5,7 +5,6 @@ import axios from "axios";
 import {IoEye, IoEyeOff} from "react-icons/io5";
 import Logo from "@/assets/logo";
 import Link from "next/link";
-import debounce from "lodash.debounce";
 import {toast} from "react-hot-toast";
 import {useRouter} from "next/navigation";
 
@@ -60,12 +59,11 @@ export default function SignupForm() {
     }
   };
 
-  const debouncedCheckUsernameAvailability = useCallback(
-    debounce((username) => {
-      checkUsernameAvailability(username);
-    }, 500),
-    []
-  );
+  const debouncedCheckUsernameAvailability = useCallback();
+  // debounce((username) => {
+  //   checkUsernameAvailability(username);
+  // }, 500),
+  // []
 
   const username = watch("username");
 
@@ -114,7 +112,7 @@ export default function SignupForm() {
               </span>
             )}
             {usernameAvailable === true && username && (
-              <span className="text-xs text-blue">Username is available</span>
+              <span className="text-blue text-xs">Username is available</span>
             )}
 
             {errors.username && (
@@ -183,7 +181,7 @@ export default function SignupForm() {
 
           <button
             type="submit"
-            className="hover:bg-blue-600 w-full rounded-md border-border-100 bg-gradient-primary py-2 text-white dark:border-darkColor-400"
+            className="w-full rounded-md border-border-100 bg-gradient-primary py-2 text-white hover:bg-blue-600 dark:border-darkColor-400"
           >
             Sign Up
           </button>

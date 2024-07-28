@@ -1,6 +1,7 @@
 // @ts-check
 import ConvertToReadableDateTimeUI from "@/components/function/convertDateTime";
 import Save from "@/components/function/handleSave";
+import DeleteQuestion from "@/components/questions/deleteQuestion";
 import FetchAnswers from "@/components/questions/fetchAnswers";
 import QuestionCard from "@/components/shared/QuestionCard";
 
@@ -33,6 +34,9 @@ export default async function AskQuestion({params}) {
       />
       <div className="absolute right-8 top-6">
         <Save contentType="Question" id={data?.data?._id} />
+      </div>
+      <div className="absolute right-16 top-6">
+        <DeleteQuestion userId={data?.data?.author?._id} id={data?.data?._id} />
       </div>
       <div>
         <FetchAnswers questionId={data?.data?._id} />

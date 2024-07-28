@@ -9,7 +9,7 @@ async function getUserData({username}) {
     {next: {revalidate: 7200}}
   );
   if (!res.ok) {
-    throw new Error("Failed to fetch tag data");
+    throw new Error("Failed to fetch user data");
   }
   return res.json();
 }
