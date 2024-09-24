@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server";
 export function middleware(request) {
-  const hasVisited = request.cookies.get("visited");
+  const hasVisited = true;
 
   if (hasVisited) {
     return NextResponse.next();
