@@ -37,6 +37,7 @@ const PageContent = () => {
     queryFn: fetchFeed,
     initialPageParam: 1,
     staleTime: 1000 * 60 * 60,
+    // @ts-ignore
     keepPreviousData: true,
     getNextPageParam: (lastPage) => {
       if (lastPage.currentPage < lastPage.totalPages) {
@@ -89,7 +90,7 @@ const PageContent = () => {
             return page?.data?.map((post) =>
               post.type === "blog" ? (
                 <BlogCard
-                  id={post?._id}
+                  // id={post?._id}
                   key={post?._id}
                   author={post?.author?.fullname}
                   author_profile_img={post?.author?.avatar}
