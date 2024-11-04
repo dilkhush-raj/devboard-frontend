@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "^5.51.15",
+    "@types/node": "22.8.4",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
