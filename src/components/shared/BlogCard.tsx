@@ -100,7 +100,12 @@ export default function BlogCard({
               href={`/@${author_username}`}
               className="flex items-center gap-2"
             >
-              <Avatar src={author_profile_img} size={40} isBordered={true} />
+              <Avatar
+                src={author_profile_img}
+                size={40}
+                isBordered={true}
+                alt={""}
+              />
               <div className="flex flex-col justify-center">
                 <div className="text-sm">{author}</div>
                 <div className="text-xs text-primary-400">
@@ -110,7 +115,7 @@ export default function BlogCard({
             </Link>
             <div>
               <Link href={`/blogs/${slug}`}>
-                <Button>Read</Button>
+                <Button onClick={undefined}>Read</Button>
               </Link>
             </div>
           </div>

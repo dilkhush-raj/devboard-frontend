@@ -58,7 +58,12 @@ export default function QuestionCard({
               href={`/@${author_username}`}
               className="flex items-center gap-2"
             >
-              <Avatar src={author_profile_img} size={35} isBordered={true} />
+              <Avatar
+                src={author_profile_img}
+                size={35}
+                isBordered={true}
+                alt={""}
+              />
               <div className="flex flex-col justify-center">
                 <div className="text-sm">{author}</div>
                 <div className="text-xs text-darkColor-150 dark:text-zinc-400">

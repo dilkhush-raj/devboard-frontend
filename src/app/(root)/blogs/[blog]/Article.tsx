@@ -12,6 +12,7 @@ import deleteBlog from "@/components/function/deleteBlog";
 
 export default function Article({data, id, type, userId}) {
   const authUser = useUserStore((state) => state);
+  // @ts-ignore
   const isAuth = authUser?.isAuth;
 
   const router = useRouter();
@@ -86,6 +87,7 @@ export default function Article({data, id, type, userId}) {
           <IoBookmarkOutline />
         </button>
       )}
+      {/* @ts-ignore */}
       {userId === authUser?.user?._id && (
         <Link
           href={`/blogs/update/${id}`}
@@ -94,6 +96,7 @@ export default function Article({data, id, type, userId}) {
           <FaPen />
         </Link>
       )}
+      {/* @ts-ignore */}
       {userId === authUser?.user?._id && (
         <button
           onClick={() => {
@@ -106,7 +109,12 @@ export default function Article({data, id, type, userId}) {
         </button>
       )}
       <article className="prose p-4 text-justify">
-        <Editor markdown={data} readOnly={true} />
+        <Editor
+          markdown={data}
+          readOnly={true}
+          editorRef={undefined}
+          onChange={undefined}
+        />
       </article>
     </div>
   );

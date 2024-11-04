@@ -19,7 +19,8 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-  const updateUser = useUserStore((state) => state.setUser);
+  //@ts-ignore
+  const updateUser = useUserStore((state) => state?.setUser);
 
   const onSubmit = async (data) => {
     try {

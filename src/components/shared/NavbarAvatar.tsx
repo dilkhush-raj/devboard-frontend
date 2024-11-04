@@ -31,10 +31,11 @@ export default function NavbarAvatar({imgSrc}) {
   return (
     <>
       <div>
+        {/* @ts-ignore */}
         {user?._id ? (
           <>
             <button onClick={() => setOpen(!open)}>
-              <Avatar src={user?.avatar} size={35} isBordered={true} />
+              <Avatar src={user?.avatar} size={35} isBordered={true} alt={""} />
             </button>
 
             {open && (
@@ -55,7 +56,12 @@ export default function NavbarAvatar({imgSrc}) {
                   </button>
                 </div>
                 <div className="flex flex-col items-center gap-2 p-10 py-4">
-                  <Avatar src={user?.avatar} size={100} isBordered={true} />
+                  <Avatar
+                    src={user?.avatar}
+                    size={100}
+                    isBordered={true}
+                    alt={""}
+                  />
                   <div className="text-center">
                     <div className="whitespace-nowrap text-xl font-bold">
                       {user?.fullname}
@@ -88,11 +94,14 @@ export default function NavbarAvatar({imgSrc}) {
                 <div className="flex items-center gap-2 p-10 pt-0">
                   {user?.interests?.map((interest) => (
                     <Link
+                      // @ts-ignore
                       href={`/?tags=${interest?.name}`}
+                      // @ts-ignore
                       key={interest?._id}
                       onClick={() => setOpen(false)}
                       className="flex items-center gap-2"
                     >
+                      {/* @ts-ignore */}
                       <Tag>{interest?.name}</Tag>
                     </Link>
                   ))}

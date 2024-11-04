@@ -117,6 +117,7 @@ export default function UserQuestion({author}) {
                   <MdDelete />
                 </button>
                 <BlogCard
+                  // @ts-ignore
                   id={post?.content?._id}
                   key={post?.content?._id}
                   author={post?.content?.author?.fullname}

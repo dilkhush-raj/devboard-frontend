@@ -28,6 +28,7 @@ export default function CardMenu({contentType, id}) {
         {CardMenuData?.map((item) => (
           <div
             key={item.label}
+            // @ts-ignore
             className={`${item.color} flex cursor-pointer items-center gap-2 rounded-lg`}
             onClick={() => {
               item?.onClick({contentType, id});

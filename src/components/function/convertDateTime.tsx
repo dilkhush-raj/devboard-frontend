@@ -1,7 +1,7 @@
-function convertToReadableDateTime(isoDateString) {
+function convertToReadableDateTime(isoDateString: string): string {
   const date = new Date(isoDateString);
   const now = new Date();
-  const diffInSeconds = Math.floor((now - date) / 1000);
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
   const diffInMinutes = Math.floor(diffInSeconds / 60);
   const diffInHours = Math.floor(diffInMinutes / 60);
   const diffInDays = Math.floor(diffInHours / 24);
@@ -18,14 +18,26 @@ function convertToReadableDateTime(isoDateString) {
   } else if (diffInDays < 2) {
     return "Yesterday";
   } else {
-    const dateOptions = {day: "numeric", month: "long", year: "numeric"};
+    const dateOptions: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
     return date.toLocaleDateString("en-IN", dateOptions);
   }
 }
 
 export {convertToReadableDateTime};
 
-export default function ConvertToReadableDateTimeUI(isoDateString) {
+import React from "react";
+
+interface Props {
+  isoDateString: string;
+}
+
+const ConvertToReadableDateTimeUI: React.FC<Props> = ({isoDateString}) => {
   const data = convertToReadableDateTime(isoDateString);
   return <span>{data}</span>;
-}
+};
+
+export default ConvertToReadableDateTimeUI;

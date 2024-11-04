@@ -29,7 +29,12 @@ export default async function UserProfile({params: {username}}) {
     <main className="p-4">
       <div className="relative flex min-h-52 w-full grid-cols-[200px_1fr] rounded-lg border border-border-100 p-4 dark:border-darkColor-400 dark:bg-dark-800">
         <div className="flex flex-shrink-0 items-center">
-          <Avatar src={data?.data?.avatar} size={150} isBordered={true} />
+          <Avatar
+            src={data?.data?.avatar}
+            size={150}
+            isBordered={true}
+            alt={""}
+          />
         </div>
         <div className="flex w-full flex-col justify-end px-6 py-10 pr-0">
           <div className="text-2xl font-semibold">{data?.data?.fullname}</div>

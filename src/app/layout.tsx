@@ -4,7 +4,7 @@ import {ThemeProvider} from "@/context/ThemeProvider";
 import ReactQueryClientProvider from "@/components/ReactQueryClientProvider";
 import {Toaster} from "react-hot-toast";
 import "react-ripple-click/dist/index.css";
-const dmSans = DM_Sans({subsets: ["latin"]});
+const dmSans = DM_Sans({subsets: ["latin"], weight: "400"});
 
 export const metadata = {
   title: "DevBoard",

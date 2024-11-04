@@ -46,13 +46,17 @@ const ShareButtons = ({url, title}) => {
               Twitter
             </div>
           </TwitterShareButton>
-          <LinkedinShareButton title={title} source={link || ""}>
+          <LinkedinShareButton
+            title={title}
+            source={link || ""}
+            url={link || ""}
+          >
             <div className="flex items-center gap-4">
               <IoLogoLinkedin />
               LinkedIn
             </div>
           </LinkedinShareButton>
-          <EmailShareButton subject={title} body={link}>
+          <EmailShareButton subject={title} body={link} url={link}>
             <div className="flex items-center gap-4">
               <MdEmail />
               Email

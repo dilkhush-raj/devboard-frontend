@@ -103,6 +103,7 @@ export default function Leaderboard({data}) {
                     src={topThreeUsers[1].avatar}
                     size={40}
                     isBordered={true}
+                    alt={""}
                   />
                   <div>{topThreeUsers[1].fullname}</div>
                   <div className="text-xs">@{topThreeUsers[1].username}</div>
@@ -135,6 +136,7 @@ export default function Leaderboard({data}) {
                     src={topThreeUsers[0].avatar}
                     size={40}
                     isBordered={true}
+                    alt={""}
                   />
                   <div>{topThreeUsers[0].fullname}</div>
                   <div className="text-xs">@{topThreeUsers[0].username}</div>
@@ -167,6 +169,7 @@ export default function Leaderboard({data}) {
                     src={topThreeUsers[2].avatar}
                     size={40}
                     isBordered={true}
+                    alt={""}
                   />
                   <div>{topThreeUsers[2].fullname}</div>
                   <div className="text-xs">@{topThreeUsers[2].username}</div>
@@ -195,7 +198,7 @@ export default function Leaderboard({data}) {
               href={`/@${user.username}`}
               className="flex w-[180px] items-center gap-4"
             >
-              <Avatar src={user.avatar} size={40} isBordered={true} />
+              <Avatar src={user.avatar} size={40} isBordered={true} alt={""} />
 
               <div className="flex flex-col">
                 <div>{user.fullname}</div>

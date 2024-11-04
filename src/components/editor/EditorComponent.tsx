@@ -82,7 +82,7 @@ const Editor = ({markdown, editorRef, onChange, readOnly = false}) => {
             <InsertTable />
             <InsertImage />
             <InsertCodeBlock />
-            <DiffSourceToggleWrapper />
+            <DiffSourceToggleWrapper children={""} />
           </>
         ),
       })

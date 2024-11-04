@@ -71,7 +71,6 @@ export default function Search() {
         onClick={() => setOpen(!open)}
         className={`${open ? "visible" : "hidden"} fixed inset-0 bg-sky-800/20 backdrop-blur-lg`}
       >
-        <BackgroundGradientAnimation></BackgroundGradientAnimation>
         {/* Maskable Area */}
       </div>
     </>

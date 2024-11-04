@@ -27,6 +27,7 @@ export default function AnswerCard({
   const [upvotes, setUpvotes] = useState(initialUpvotes);
   const [downvotes, setDownvotes] = useState(initialDownvotes);
   const [open, setOpen] = useState(false);
+  // @ts-ignore
   const userid = useUserStore((state) => state.user._id);
 
   const handleDelete = async () => {
@@ -53,7 +54,12 @@ export default function AnswerCard({
   return (
     <div className="relative rounded-lg border border-border-100 bg-white p-4 shadow-sm dark:border-darkColor-400 dark:bg-dark-800">
       <div className="flex flex-col gap-4">
-        <Editor markdown={content} editorRef={null} readOnly={true} />
+        <Editor
+          markdown={content}
+          editorRef={null}
+          readOnly={true}
+          onChange={undefined}
+        />
 
         <div className="flex items-center justify-between gap-4 text-sm">
           <div className="flex w-max items-center gap-2 rounded-full bg-lightColor-700 px-3 py-1 dark:bg-darkColor-400">
@@ -80,6 +86,7 @@ export default function AnswerCard({
           </div>
         </div>
       </div>
+      {/* @ts-ignore */}
       {userStore?.isAuth && userStore?.user?._id === authorId && (
         <div className="absolute right-2 top-2">
           <>

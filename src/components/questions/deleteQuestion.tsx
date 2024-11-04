@@ -8,6 +8,7 @@ export default function DeleteQuestion({id, userId}) {
   const router = useRouter();
 
   const userStore = useUserStore((state) => state);
+  // @ts-ignore
   if (userStore?.user?._id === userId) {
     return (
       <div>

@@ -65,6 +65,7 @@ export default function UserBlog({author}) {
         {data?.pages?.map((page) => {
           return page?.data.blog?.map((post) => (
             <BlogCard
+              // @ts-ignore
               id={post?._id}
               key={post?._id}
               author={post?.author?.fullname}

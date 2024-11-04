@@ -22,6 +22,7 @@ export default function Posts({user, username}) {
         variant="underlined"
         selectedKey={selectedTab}
         onSelectionChange={(key) => {
+          // @ts-ignore
           setSelectedTab(key);
           router.push(`/@${username}/?tab=${key}`);
         }}
@@ -42,9 +43,10 @@ export default function Posts({user, username}) {
         <Tab key="answers" title="Answers">
           <UserAnswer author={user} />
         </Tab>
+        {/* @ts-ignore */}
         {userStore?.isAuth && userStore?.user?._id === user && (
           <Tab key="saved" title="Saved">
-            <Saved />
+            <Saved author={undefined} />
           </Tab>
         )}
       </Tabs>

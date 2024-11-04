@@ -70,7 +70,8 @@ export default function UserAnswer({author}) {
               id={post?._id}
               author={post?.author?.fullname}
               author_username={post?.author?.username}
-              author_profile_img={post?.author?.avatar}
+              // @ts-ignore
+              author_profile_img={post?.author?.avatar || ""}
               published_at={ConvertToReadableDateTimeUI(post?.createdAt)}
               content={post?.content}
               upvotes={post?.upvotes}

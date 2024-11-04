@@ -63,9 +63,8 @@ const page = () => {
     <main className="p-4">
       <div className="flex flex-col gap-4">
         {data?.pages?.map((page) => {
-          return page?.data?.map((post) => (
+          return page?.data?.map((post, index) => (
             <BlogCard
-              id={post?._id}
               key={post?._id}
               author={post?.author?.fullname}
               author_profile_img={post?.author?.avatar}

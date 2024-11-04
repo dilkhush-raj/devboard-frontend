@@ -11,7 +11,6 @@ import Answer from "@/components/shared/AnswerCard";
 import {useEffect, useRef, useState} from "react";
 import {Spinner} from "@nextui-org/spinner";
 import Editor from "../editor/Editor";
-import {useRouter} from "next/navigation";
 
 export default function FetchAnswers({questionId}) {
   const {ref, inView} = useInView();
@@ -69,6 +68,7 @@ export default function FetchAnswers({questionId}) {
       queryClient.invalidateQueries({queryKey: ["answers", questionId]});
     },
     onError: (error) => {
+      // @ts-ignore
       toast.error(error.response?.data?.message || `Failed to update answer`);
     },
   });
@@ -94,7 +94,9 @@ export default function FetchAnswers({questionId}) {
   const handleDeleteAnswer = (deletedAnswerId) => {
     queryClient.setQueryData(["answers", questionId], (oldData) => {
       return {
+        // @ts-ignore
         ...oldData,
+        // @ts-ignore
         pages: oldData.pages.map((page) => ({
           ...page,
           answer: page.answer.filter((post) => post._id !== deletedAnswerId),
@@ -110,8 +112,10 @@ export default function FetchAnswers({questionId}) {
         {},
         {withCredentials: true}
       );
+      // @ts-ignore
       await queryClient.invalidateQueries(["answers", questionId]);
     } catch (error) {
+      // @ts-ignore
       toast.error(error.response?.data?.message || `Failed to ${voteType}`);
     }
   };
@@ -131,6 +135,7 @@ export default function FetchAnswers({questionId}) {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     const data = {content};
+    // @ts-ignore
     updateAnswer(data);
     setOpen(false);
   };
@@ -149,6 +154,7 @@ export default function FetchAnswers({questionId}) {
           withCredentials: true,
         }
       );
+      // @ts-ignore
       await queryClient.invalidateQueries(["answers", questionId]);
       setOpen(false);
       setContent("");
@@ -205,7 +211,7 @@ export default function FetchAnswers({questionId}) {
               author={post?.author?.fullname}
               authorId={post?.author?._id}
               author_username={post?.author?.username}
-              author_profile_img={post?.author?.avatar}
+              // author_profile_img={post?.author?.avatar}
               published_at={ConvertToReadableDateTimeUI(post?.createdAt)}
               content={post?.content}
               upvotes={post?.upvotes}

@@ -42,6 +42,7 @@ export default async function BlogPage({params}) {
               src={data?.data?.author?.avatar}
               size={40}
               isBordered={true}
+              alt={""}
             />
             <div className="flex flex-col justify-center">
               <div className="text-sm">{data?.data?.author?.fullname}</div>
