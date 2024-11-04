@@ -35,7 +35,7 @@ interface Props {
   isoDateString: string;
 }
 
-const ConvertToReadableDateTimeUI: React.FC<Props> = ({isoDateString}) => {
+const ConvertToReadableDateTimeUI: React.FC = (isoDateString: string) => {
   const data = convertToReadableDateTime(isoDateString);
   return <span>{data}</span>;
 };

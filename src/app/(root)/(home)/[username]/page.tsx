@@ -18,7 +18,7 @@ export default async function UserProfile({params: {username}}) {
   const user = username.slice(3);
   const data = await getUserData({username: user});
 
-  const joinedData = new Date(data?.data?.created_at);
+  const joinedData = new Date(data?.data?.createdAt);
   const joinedDate = joinedData.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",

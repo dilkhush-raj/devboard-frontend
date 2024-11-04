@@ -73,7 +73,7 @@ export default function UserBlog({author}) {
               author_username={post?.author?.username}
               comment={[]}
               content={post?.content}
-              published_at={ConvertToReadableDateTimeUI(post?.created_at)}
+              published_at={ConvertToReadableDateTimeUI(post?.createdAt)}
               slug={post?.slug}
               tags={post?.tags}
               title={post?.title}

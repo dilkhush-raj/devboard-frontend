@@ -51,6 +51,7 @@ export default function AnswerCard({
     onUpdateClick(id, content);
     setOpen(false);
   };
+
   return (
     <div className="relative rounded-lg border border-border-100 bg-white p-4 shadow-sm dark:border-darkColor-400 dark:bg-dark-800">
       <div className="flex flex-col gap-4">

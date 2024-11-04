@@ -99,7 +99,7 @@ export default function UserQuestion({author}) {
                   comment={[]}
                   content={post?.content?.content}
                   published_at={ConvertToReadableDateTimeUI(
-                    post?.content?.created_at
+                    post?.content?.createdAt
                   )}
                   slug={post?.content?.slug}
                   tags={post?.content?.tags}
@@ -126,7 +126,7 @@ export default function UserQuestion({author}) {
                   comment={[]}
                   content={post?.content?.content}
                   published_at={ConvertToReadableDateTimeUI(
-                    post?.content?.created_at
+                    post?.content?.createdAt
                   )}
                   slug={post?.content?.slug}
                   tags={post?.content?.tags}
